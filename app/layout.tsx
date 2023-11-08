@@ -1,6 +1,8 @@
 import "@mantine/core/styles.css";
 import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import { NextAuthProvider } from "../components/Providers";
+import { Sign } from "crypto";
 // import { theme } from '../theme';
 
 export const metadata = {
@@ -20,7 +22,9 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <MantineProvider>{children}</MantineProvider>
+        <NextAuthProvider>
+          <MantineProvider>{children}</MantineProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

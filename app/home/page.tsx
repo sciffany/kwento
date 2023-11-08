@@ -1,25 +1,14 @@
-import prisma from "../../lib/prisma";
+"use client";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-export default async function DynamicPage(props) {
-  const data = await getData();
+export default function DynamicPage(props) {
+  const { data: session } = useSession();
+  const router = useRouter();
 
-  return (
-    <div>
-      <h1>My blog post #{data[0].id}</h1>
-      <h2>{data[0].title}</h2>
-      <p>{data[0].content}</p>
-      <p>By {data[0].author?.name}</p>
-    </div>
-  );
-}
-
-async function getData() {
-  const feed = await prisma.post.findMany({
-    include: {
-      author: {
-        select: { name: true },
-      },
-    },
-  });
-  return feed;
+  if (session && session.user) {
+    router.push("http://localhost:3000/admin/create");
+  } else {
+    return <button onClick={() => signIn()}>Sign in</button>;
+  }
 }
