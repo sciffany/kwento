@@ -39,7 +39,7 @@ export default function BasicAppShell({
   return (
     <SessionProvider>
       <AppShell
-        header={{ height: 100 }}
+        header={{ height: 80 }}
         navbar={{
           width: 300,
           breakpoint: "sm",
@@ -55,8 +55,15 @@ export default function BasicAppShell({
               hiddenFrom="sm"
               size="sm"
             />
-            <img src="/logo.png" alt="logo" height={90} width={540} />
-            <SigninButton />
+            <Flex
+              direction="row"
+              w="100%"
+              align="center"
+              justify="space-between"
+            >
+              <img src="/logo.png" alt="logo" height={80} width={480} />
+              <SigninButton />
+            </Flex>
           </Group>
         </AppShell.Header>
         <AppShell.Navbar p="md" color="grey">

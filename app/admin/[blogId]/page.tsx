@@ -1,9 +1,22 @@
-'use client';
+"use client";
 
-import { Grid, TextInput } from '@mantine/core';
-import React from 'react';
+import { Button, Grid, TextInput } from "@mantine/core";
+import React from "react";
+import { BlogCard } from "../../../components/BlogCard";
+import useBlog from "../../../hooks/useBlog";
+import axios from "axios";
 
 export default function CreatePage() {
+  const { blog, mutate } = useBlog("");
+
+  async function addBlogCard() {
+    await axios.post("/api/blogCards", {
+      blogId: blog.id,
+      content: "",
+    });
+    mutate();
+  }
+
   return (
     <>
       <Grid>
@@ -31,7 +44,16 @@ export default function CreatePage() {
           ></TextInput>
         </Grid.Col>
       </Grid>
-      <Grid></Grid>
+
+      <Grid>
+        {blog.blogCardIds.map((blogCardId) => (
+          <BlogCard blogCardId={blogCardId} />
+        ))}
+      </Grid>
+
+      <Button onClick={addBlogCard} color="navy">
+        Add Paragraph
+      </Button>
     </>
   );
 }

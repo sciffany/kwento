@@ -10,15 +10,6 @@ datasource db {
     directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model Post {
-    id        String  @id @default(cuid())
-    title     String
-    content   String?
-    published Boolean @default(false)
-    author    User?   @relation(fields: [authorId], references: [id])
-    authorId  String?
-}
-
 model Account {
     id                 String  @id @default(cuid())
     userId             String  @map("user_id")
@@ -54,9 +45,46 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     image         String?
-    posts         Post[]
     accounts      Account[]
     sessions      Session[]
+    blogs         Blog[]
+    words         Word[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Blog {
+    id           String @id @default(cuid())
+    title        String
+    englishTitle String
+    languageCode String
+
+    userId    String?
+    user      User?      @relation(fields: [userId], references: [id])
+    blogCards BlogCard[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model BlogCard {
+    id             String       @id @default(cuid())
+    content        String
+    englishContent String
+    image          String?
+    blogCardType   BlogCardType
+
+    blogId String?
+    blog   Blog?   @relation(fields: [blogId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+enum BlogCardType {
+    TEXT
+    IMAGE
 }
 
 model VerificationToken {
@@ -66,4 +94,16 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Word {
+    id             String @id @default(cuid())
+    content        String
+    englishContent String
+
+    userId String?
+    user   User?   @relation(fields: [userId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
