@@ -6,13 +6,12 @@ import { BlogCard } from "../../../components/BlogCard";
 import useBlog from "../../../hooks/useBlog";
 import axios from "axios";
 
-export default function CreatePage() {
-  const { blog, mutate } = useBlog("");
+export default function CreatePage({ blogId }: { blogId: string }) {
+  const { blog, mutate } = useBlog(blogId);
 
   async function addBlogCard() {
     await axios.post("/api/blogCards", {
       blogId: blog.id,
-      content: "",
     });
     mutate();
   }

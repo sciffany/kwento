@@ -6,6 +6,7 @@ import { IconEdit, IconBook, IconLogout } from "@tabler/icons-react";
 import classes from "./NavbarSimple.module.css";
 import { SessionProvider } from "next-auth/react";
 import SigninButton from "../../components/SigninButton";
+import axios from "axios";
 
 export default function BasicAppShell({
   children,
@@ -14,9 +15,13 @@ export default function BasicAppShell({
 }) {
   const [opened, { toggle }] = useDisclosure();
 
+  async function createBlog() {
+    await axios.post("/api/blogs");
+  }
+
   const data = [
-    { link: "", label: "Write Short Story", icon: IconEdit },
-    { link: "", label: "My Stories", icon: IconBook },
+    { action: createBlog, label: "Write Bilingual Blog", icon: IconEdit },
+    { link: "", label: "My Blogs", icon: IconBook },
     { link: "", label: "Logout", icon: IconLogout },
   ];
 
@@ -24,10 +29,8 @@ export default function BasicAppShell({
     <a
       className={classes.link}
       href={item.link}
+      onClick={item.action}
       key={item.label}
-      onClick={(event) => {
-        event.preventDefault();
-      }}
     >
       <Flex columnGap={10}>
         <item.icon stroke={1.5} />
