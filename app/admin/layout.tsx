@@ -16,7 +16,8 @@ export default function BasicAppShell({
   const [opened, { toggle }] = useDisclosure();
 
   async function createBlog() {
-    await axios.post("/api/blogs");
+    const { data: blog } = await axios.post("/api/blogs");
+    window.location.href = `/admin/${blog.id}`;
   }
 
   const data = [
