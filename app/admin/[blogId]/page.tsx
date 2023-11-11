@@ -32,7 +32,7 @@ export default function CreatePage() {
 
   async function addBlogCard() {
     await axios.post("/api/blogCards", {
-      blogId: blog.id,
+      blogId: blog?.id,
     });
     mutate();
   }
@@ -90,19 +90,31 @@ export default function CreatePage() {
             variant="unstyled"
             placeholder="Title (in English)"
             {...form.getInputProps("englishTitle")}
+            onChange={(e) => {
+              form.setFieldValue("englishTitle", e.currentTarget.value);
+              debouncedSaveTitle(params?.blogId as string, {
+                title: form.values.title,
+                englishTitle: e.currentTarget.value,
+              });
+            }}
             required
           ></TextInput>
         </Grid.Col>
       </Grid>
 
-      {blog?.blogCards?.map((blogCard) => (
-        <BlogCardUI
-          key={blogCard.id}
-          blogCardId={blogCard.id}
-          saveBlogCard={saveBlogCard}
-          deleteBlogCard={deleteBlogCard}
-        />
-      ))}
+      {blog?.blogCards
+        ?.sort(
+          (a, b) =>
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        )
+        .map((blogCard) => (
+          <BlogCardUI
+            key={blogCard.id}
+            blogCardId={blogCard.id}
+            saveBlogCard={saveBlogCard}
+            deleteBlogCard={deleteBlogCard}
+          />
+        ))}
 
       <Button onClick={addBlogCard} color="navy">
         + Text

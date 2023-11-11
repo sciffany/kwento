@@ -69,6 +69,13 @@ export function BlogCard({
           variant="unstyled"
           placeholder="Text (in English)"
           {...form.getInputProps("englishText")}
+          onChange={(e) => {
+            form.setFieldValue("englishText", e.currentTarget.value);
+            debouncedSaveBlogCard(blogCardId, {
+              content: form.values.text,
+              englishContent: e.currentTarget.value,
+            });
+          }}
           required
         ></Textarea>
       </Grid.Col>
