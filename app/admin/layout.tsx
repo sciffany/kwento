@@ -4,7 +4,6 @@ import { useDisclosure } from "@mantine/hooks";
 import { AppShell, Burger, Flex, Group } from "@mantine/core";
 import { IconEdit, IconBook, IconLogout } from "@tabler/icons-react";
 import classes from "./NavbarSimple.module.css";
-import { SessionProvider } from "next-auth/react";
 import SigninButton from "../../components/SigninButton";
 import axios from "axios";
 
@@ -17,7 +16,7 @@ export default function BasicAppShell({
 
   async function createBlog() {
     const { data: blog } = await axios.post("/api/blogs");
-    window.location.href = `/admin/${blog.id}`;
+    window.location.href = `/admin/${blog.data.id}`;
   }
 
   const data = [
@@ -41,40 +40,28 @@ export default function BasicAppShell({
   ));
 
   return (
-    <SessionProvider>
-      <AppShell
-        header={{ height: 80 }}
-        navbar={{
-          width: 300,
-          breakpoint: "sm",
-          collapsed: { mobile: !opened },
-        }}
-        padding="md"
-      >
-        <AppShell.Header>
-          <Group h="100%" px="md">
-            <Burger
-              opened={opened}
-              onClick={toggle}
-              hiddenFrom="sm"
-              size="sm"
-            />
-            <Flex
-              direction="row"
-              w="100%"
-              align="center"
-              justify="space-between"
-            >
-              <img src="/logo.png" alt="logo" height={80} width={480} />
-              <SigninButton />
-            </Flex>
-          </Group>
-        </AppShell.Header>
-        <AppShell.Navbar p="md" color="grey">
-          {links}
-        </AppShell.Navbar>
-        <AppShell.Main>{children}</AppShell.Main>
-      </AppShell>
-    </SessionProvider>
+    <AppShell
+      header={{ height: 80 }}
+      navbar={{
+        width: 300,
+        breakpoint: "sm",
+        collapsed: { mobile: !opened },
+      }}
+      padding="md"
+    >
+      <AppShell.Header>
+        <Group h="100%" px="md">
+          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+          <Flex direction="row" w="100%" align="center" justify="space-between">
+            <img src="/logo.png" alt="logo" height={80} width={480} />
+            <SigninButton />
+          </Flex>
+        </Group>
+      </AppShell.Header>
+      <AppShell.Navbar p="md" color="grey">
+        {links}
+      </AppShell.Navbar>
+      <AppShell.Main>{children}</AppShell.Main>
+    </AppShell>
   );
 }

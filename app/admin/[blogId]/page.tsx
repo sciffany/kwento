@@ -1,13 +1,32 @@
 "use client";
 
 import { Button, Grid, TextInput } from "@mantine/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { BlogCard } from "../../../components/BlogCard";
 import useBlog from "../../../hooks/useBlog";
 import axios from "axios";
+import { useParams } from "next/navigation";
+import { useForm } from "@mantine/form";
 
-export default function CreatePage({ blogId }: { blogId: string }) {
-  const { blog, mutate } = useBlog(blogId);
+export default function CreatePage() {
+  const params = useParams();
+  const { blog, mutate } = useBlog(params?.blogId as string);
+
+  const form = useForm({
+    initialValues: {
+      title: "",
+      englishTitle: "",
+    },
+  });
+
+  useEffect(() => {
+    if (blog) {
+      form.setValues({
+        title: blog.title,
+        englishTitle: blog.englishTitle,
+      });
+    }
+  }, [blog]);
 
   async function addBlogCard() {
     await axios.post("/api/blogCards", {
@@ -27,6 +46,7 @@ export default function CreatePage({ blogId }: { blogId: string }) {
             size="xl"
             variant="unstyled"
             placeholder="Title (in your language)"
+            {...form.getInputProps("title")}
             required
           ></TextInput>
         </Grid.Col>
@@ -39,16 +59,15 @@ export default function CreatePage({ blogId }: { blogId: string }) {
             size="xl"
             variant="unstyled"
             placeholder="Title (in English)"
+            {...form.getInputProps("englishTitle")}
             required
           ></TextInput>
         </Grid.Col>
       </Grid>
 
-      <Grid>
-        {blog.blogCardIds.map((blogCardId) => (
-          <BlogCard blogCardId={blogCardId} />
-        ))}
-      </Grid>
+      {blog?.blogCards?.map((blogCard) => (
+        <BlogCard blogCardId={blogCard.id} />
+      ))}
 
       <Button onClick={addBlogCard} color="navy">
         Add Paragraph

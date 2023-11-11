@@ -1,14 +1,6 @@
 import prisma from "../../../../lib/prisma";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-
-  const blogId = searchParams.get("blogId");
-
-  if (!blogId) {
-    return Response.redirect("/404");
-  }
-
+export async function GET(request: Request, { params: { blogId } }) {
   const blog = await prisma.blog.findUnique({
     where: {
       id: blogId,
@@ -18,5 +10,5 @@ export async function GET(request: Request) {
     },
   });
 
-  return Response.json({ data: blog });
+  return Response.json(blog);
 }
