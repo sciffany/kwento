@@ -2,11 +2,12 @@
 
 import { Button, Grid, TextInput } from "@mantine/core";
 import React, { useEffect } from "react";
-import { BlogCard } from "../../../components/BlogCard";
 import useBlog from "../../../hooks/useBlog";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { useForm } from "@mantine/form";
+import { BlogCard } from "@prisma/client";
+import { BlogCard as BlogCardUI } from "../../../components/BlogCard";
 
 export default function CreatePage() {
   const params = useParams();
@@ -33,6 +34,13 @@ export default function CreatePage() {
       blogId: blog.id,
     });
     mutate();
+  }
+
+  async function saveBlogCard(
+    blogCardId: string,
+    blogCard: Pick<BlogCard, "content" | "englishContent">
+  ) {
+    await axios.post(`/api/blogCards/${blogCardId}`, blogCard);
   }
 
   return (
@@ -66,11 +74,15 @@ export default function CreatePage() {
       </Grid>
 
       {blog?.blogCards?.map((blogCard) => (
-        <BlogCard blogCardId={blogCard.id} />
+        <BlogCardUI
+          key={blogCard.id}
+          blogCardId={blogCard.id}
+          saveBlogCard={saveBlogCard}
+        />
       ))}
 
       <Button onClick={addBlogCard} color="navy">
-        Add Paragraph
+        + Text
       </Button>
     </>
   );

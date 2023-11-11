@@ -1,19 +1,29 @@
 import prisma from "../../../../lib/prisma";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-
-  const blogCardId = searchParams.get("blogCardId");
-
-  if (!blogCardId) {
-    return Response.redirect("/404");
-  }
-
+async function GET(request: Request, { params: { blogCardId } }) {
   const blogCard = await prisma.blogCard.findUnique({
     where: {
       id: blogCardId,
     },
   });
 
-  return Response.json({ data: blogCard });
+  return Response.json(blogCard);
 }
+
+async function POST(request: Request, { params: { blogCardId } }) {
+  const { content, englishContent } = await request.json();
+
+  const blogCard = await prisma.blogCard.update({
+    where: {
+      id: blogCardId,
+    },
+    data: {
+      content,
+      englishContent,
+    },
+  });
+
+  return Response.json(blogCard);
+}
+
+export { GET, POST };
