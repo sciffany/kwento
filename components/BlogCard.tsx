@@ -4,16 +4,19 @@ import { Grid, Textarea } from "@mantine/core";
 import { BlogCard } from "@prisma/client";
 import _ from "lodash";
 import { useCallback, useEffect } from "react";
+import { IconTrash } from "@tabler/icons-react";
 
 export function BlogCard({
   blogCardId,
   saveBlogCard,
+  deleteBlogCard,
 }: {
   blogCardId: string;
   saveBlogCard: (
     blogCardId: string,
     blogCard: Pick<BlogCard, "content" | "englishContent">
   ) => void;
+  deleteBlogCard: (blogCardId: string) => void;
 }) {
   const { blogCard } = useBlogCard(blogCardId);
 
@@ -43,6 +46,7 @@ export function BlogCard({
           fw="bold"
           placeholder="Text (in your language)"
           required
+          variant="unstyled"
           {...form.getInputProps("text")}
           onChange={(e) => {
             form.setFieldValue("text", e.currentTarget.value);
@@ -51,12 +55,18 @@ export function BlogCard({
               englishContent: form.values.englishText,
             });
           }}
-          // rightSection={<IconTrash onClick={}/>}
+          rightSection={
+            <IconTrash
+              cursor="pointer"
+              onClick={() => deleteBlogCard(blogCardId)}
+            />
+          }
         ></Textarea>
       </Grid.Col>
       <Grid.Col span={6}>
         <Textarea
           fw="bold"
+          variant="unstyled"
           placeholder="Text (in English)"
           {...form.getInputProps("englishText")}
           required

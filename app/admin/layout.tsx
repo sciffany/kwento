@@ -32,7 +32,12 @@ export default function BasicAppShell({
       onClick={item.action}
       key={item.label}
     >
-      <Flex columnGap={10}>
+      <Flex
+        columnGap={10}
+        style={{
+          cursor: "pointer",
+        }}
+      >
         <item.icon stroke={1.5} />
         <span>{item.label}</span>
       </Flex>

@@ -1,13 +1,14 @@
 "use client";
 
 import { Button, Grid, TextInput } from "@mantine/core";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import useBlog from "../../../hooks/useBlog";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { useForm } from "@mantine/form";
-import { BlogCard } from "@prisma/client";
+import { Blog, BlogCard } from "@prisma/client";
 import { BlogCard as BlogCardUI } from "../../../components/BlogCard";
+import _ from "lodash";
 
 export default function CreatePage() {
   const params = useParams();
@@ -43,6 +44,20 @@ export default function CreatePage() {
     await axios.post(`/api/blogCards/${blogCardId}`, blogCard);
   }
 
+  async function saveTitle(
+    blogId: string,
+    blog: Pick<Blog, "title" | "englishTitle">
+  ) {
+    await axios.post(`/api/blogs/${blogId}`, blog);
+  }
+
+  async function deleteBlogCard(blogCardId: string) {
+    await axios.delete(`/api/blogCards/${blogCardId}`);
+    mutate();
+  }
+
+  const debouncedSaveTitle = useCallback(_.debounce(saveTitle, 1000), []);
+
   return (
     <>
       <Grid>
@@ -55,6 +70,13 @@ export default function CreatePage() {
             variant="unstyled"
             placeholder="Title (in your language)"
             {...form.getInputProps("title")}
+            onChange={(e) => {
+              form.setFieldValue("title", e.currentTarget.value);
+              debouncedSaveTitle(params?.blogId as string, {
+                title: e.currentTarget.value,
+                englishTitle: form.values.englishTitle,
+              });
+            }}
             required
           ></TextInput>
         </Grid.Col>
@@ -78,6 +100,7 @@ export default function CreatePage() {
           key={blogCard.id}
           blogCardId={blogCard.id}
           saveBlogCard={saveBlogCard}
+          deleteBlogCard={deleteBlogCard}
         />
       ))}
 

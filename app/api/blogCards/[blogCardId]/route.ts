@@ -26,4 +26,14 @@ async function POST(request: Request, { params: { blogCardId } }) {
   return Response.json(blogCard);
 }
 
-export { GET, POST };
+async function DELETE(request: Request, { params: { blogCardId } }) {
+  const blogCard = await prisma.blogCard.delete({
+    where: {
+      id: blogCardId,
+    },
+  });
+
+  return Response.json(blogCard);
+}
+
+export { GET, POST, DELETE };
