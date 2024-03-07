@@ -4,19 +4,19 @@ import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { NextAuthProvider } from "../components/Providers";
 
 export const metadata = {
-  title: "Mantine Next.js template",
-  description: "I am using Mantine with Next.js!",
+  title: "Kwento",
+  description: "Read and write stories in your language",
 };
 
 export default function RootLayout({ children }: { children: any }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <head>
         <ColorSchemeScript />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel='shortcut icon' href='/favicon.svg' />
         <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+          name='viewport'
+          content='minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no'
         />
       </head>
       <body>

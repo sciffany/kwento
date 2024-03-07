@@ -1,124 +1,182 @@
+// "use client";
+
+// import { Button, Grid, TextInput } from "@mantine/core";
+// import React, { useCallback, useEffect } from "react";
+// import useBlog from "../../../hooks/useBlog";
+// import axios from "axios";
+// import { useParams } from "next/navigation";
+// import { useForm } from "@mantine/form";
+// import { Blog, BlogCard } from "@prisma/client";
+// import { BlogCard as BlogCardUI } from "../../../components/BlogCard";
+// import _ from "lodash";
+
+// export default function CreatePage() {
+//   const params = useParams();
+//   const { blog, mutate } = useBlog(params?.blogId as string);
+
+//   const form = useForm({
+//     initialValues: {
+//       title: "",
+//       englishTitle: "",
+//     },
+//   });
+
+//   useEffect(() => {
+//     if (blog) {
+//       form.setValues({
+//         title: blog.title,
+//         englishTitle: blog.englishTitle,
+//       });
+//     }
+//   }, [blog]);
+
+//   async function addBlogCard() {
+//     await axios.post("/api/blogCards", {
+//       blogId: blog?.id,
+//     });
+//     mutate();
+//   }
+
+//   async function saveBlogCard(
+//     blogCardId: string,
+//     blogCard: Pick<BlogCard, "content" | "englishContent">
+//   ) {
+//     await axios.post(`/api/blogCards/${blogCardId}`, blogCard);
+//   }
+
+//   async function saveTitle(
+//     blogId: string,
+//     blog: Pick<Blog, "title" | "englishTitle">
+//   ) {
+//     await axios.post(`/api/blogs/${blogId}`, blog);
+//   }
+
+//   async function deleteBlogCard(blogCardId: string) {
+//     await axios.delete(`/api/blogCards/${blogCardId}`);
+//     mutate();
+//   }
+
+//   const debouncedSaveTitle = useCallback(_.debounce(saveTitle, 1000), []);
+
+//   return (
+//     <>
+//       <Grid>
+//         <Grid.Col span={6}>
+//           <TextInput
+//             fw="bold"
+//             fz="xl"
+//             width="full"
+//             size="xl"
+//             variant="unstyled"
+//             placeholder="Title (in your language)"
+//             {...form.getInputProps("title")}
+//             onChange={(e) => {
+//               form.setFieldValue("title", e.currentTarget.value);
+//               debouncedSaveTitle(params?.blogId as string, {
+//                 title: e.currentTarget.value,
+//                 englishTitle: form.values.englishTitle,
+//               });
+//             }}
+//             required
+//           ></TextInput>
+//         </Grid.Col>
+
+//         <Grid.Col span={6}>
+//           <TextInput
+//             fw="bold"
+//             fz="xl"
+//             width="full"
+//             size="xl"
+//             variant="unstyled"
+//             placeholder="Title (in English)"
+//             {...form.getInputProps("englishTitle")}
+//             onChange={(e) => {
+//               form.setFieldValue("englishTitle", e.currentTarget.value);
+//               debouncedSaveTitle(params?.blogId as string, {
+//                 title: form.values.title,
+//                 englishTitle: e.currentTarget.value,
+//               });
+//             }}
+//             required
+//           ></TextInput>
+//         </Grid.Col>
+//       </Grid>
+
+//       {blog?.blogCards
+//         ?.sort(
+//           (a, b) =>
+//             new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+//         )
+//         .map((blogCard) => (
+//           <BlogCardUI
+//             key={blogCard.id}
+//             blogCardId={blogCard.id}
+//             saveBlogCard={saveBlogCard}
+//             deleteBlogCard={deleteBlogCard}
+//           />
+//         ))}
+
+//       <Button onClick={addBlogCard} color="navy">
+//         + Text
+//       </Button>
+//     </>
+//   );
+// }
 "use client";
 
-import { Button, Grid, TextInput } from "@mantine/core";
-import React, { useCallback, useEffect } from "react";
-import useBlog from "../../../hooks/useBlog";
-import axios from "axios";
-import { useParams } from "next/navigation";
-import { useForm } from "@mantine/form";
-import { Blog, BlogCard } from "@prisma/client";
-import { BlogCard as BlogCardUI } from "../../../components/BlogCard";
-import _ from "lodash";
+import { useState } from "react";
+import { DataSheetGrid, textColumn, keyColumn } from "react-datasheet-grid";
+import { ReactMediaRecorder } from "react-media-recorder";
+import "react-datasheet-grid/dist/style.css";
 
-export default function CreatePage() {
-  const params = useParams();
-  const { blog, mutate } = useBlog(params?.blogId as string);
+const Recorder = () => {
+  return (
+    <ReactMediaRecorder
+      audio
+      render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+        <div>
+          <button onClick={startRecording}>🔴</button>
+          <button onClick={stopRecording}>🟥</button>
+          <button
+            onClick={() => {
+              const audio = new Audio(mediaBlobUrl);
+              audio.play();
+            }}
+          >
+            ▶️
+          </button>
+        </div>
+      )}
+    />
+  );
+};
 
-  const form = useForm({
-    initialValues: {
-      title: "",
-      englishTitle: "",
+const Grid = () => {
+  const [data, setData] = useState([
+    { text: "Elon", subtext: "Musk" },
+    { text: "Jeff", subtext: "Bezos" },
+  ]);
+
+  const columns = [
+    {
+      ...keyColumn("text", textColumn),
+      title: "Tagalog",
     },
-  });
-
-  useEffect(() => {
-    if (blog) {
-      form.setValues({
-        title: blog.title,
-        englishTitle: blog.englishTitle,
-      });
-    }
-  }, [blog]);
-
-  async function addBlogCard() {
-    await axios.post("/api/blogCards", {
-      blogId: blog?.id,
-    });
-    mutate();
-  }
-
-  async function saveBlogCard(
-    blogCardId: string,
-    blogCard: Pick<BlogCard, "content" | "englishContent">
-  ) {
-    await axios.post(`/api/blogCards/${blogCardId}`, blogCard);
-  }
-
-  async function saveTitle(
-    blogId: string,
-    blog: Pick<Blog, "title" | "englishTitle">
-  ) {
-    await axios.post(`/api/blogs/${blogId}`, blog);
-  }
-
-  async function deleteBlogCard(blogCardId: string) {
-    await axios.delete(`/api/blogCards/${blogCardId}`);
-    mutate();
-  }
-
-  const debouncedSaveTitle = useCallback(_.debounce(saveTitle, 1000), []);
+    {
+      ...keyColumn("subtext", textColumn),
+      title: "English",
+    },
+    {
+      component: Recorder,
+      title: "Recording",
+    },
+  ];
 
   return (
     <>
-      <Grid>
-        <Grid.Col span={6}>
-          <TextInput
-            fw="bold"
-            fz="xl"
-            width="full"
-            size="xl"
-            variant="unstyled"
-            placeholder="Title (in your language)"
-            {...form.getInputProps("title")}
-            onChange={(e) => {
-              form.setFieldValue("title", e.currentTarget.value);
-              debouncedSaveTitle(params?.blogId as string, {
-                title: e.currentTarget.value,
-                englishTitle: form.values.englishTitle,
-              });
-            }}
-            required
-          ></TextInput>
-        </Grid.Col>
-
-        <Grid.Col span={6}>
-          <TextInput
-            fw="bold"
-            fz="xl"
-            width="full"
-            size="xl"
-            variant="unstyled"
-            placeholder="Title (in English)"
-            {...form.getInputProps("englishTitle")}
-            onChange={(e) => {
-              form.setFieldValue("englishTitle", e.currentTarget.value);
-              debouncedSaveTitle(params?.blogId as string, {
-                title: form.values.title,
-                englishTitle: e.currentTarget.value,
-              });
-            }}
-            required
-          ></TextInput>
-        </Grid.Col>
-      </Grid>
-
-      {blog?.blogCards
-        ?.sort(
-          (a, b) =>
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-        )
-        .map((blogCard) => (
-          <BlogCardUI
-            key={blogCard.id}
-            blogCardId={blogCard.id}
-            saveBlogCard={saveBlogCard}
-            deleteBlogCard={deleteBlogCard}
-          />
-        ))}
-
-      <Button onClick={addBlogCard} color="navy">
-        + Text
-      </Button>
+      <DataSheetGrid value={data} onChange={setData as any} columns={columns} />
     </>
   );
-}
+};
+
+export default Grid;

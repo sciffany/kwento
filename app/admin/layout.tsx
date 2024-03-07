@@ -20,8 +20,8 @@ export default function BasicAppShell({
   }
 
   const data = [
-    { action: createBlog, label: "Write Bilingual Blog", icon: IconEdit },
-    { link: "", label: "My Blogs", icon: IconBook },
+    { action: createBlog, label: "Write Story", icon: IconEdit },
+    { link: "", label: "My Stories", icon: IconBook },
     { link: "", label: "Logout", icon: IconLogout },
   ];
 
@@ -52,18 +52,18 @@ export default function BasicAppShell({
         breakpoint: "sm",
         collapsed: { mobile: !opened },
       }}
-      padding="md"
+      padding='md'
     >
       <AppShell.Header>
-        <Group h="100%" px="md">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <Flex direction="row" w="100%" align="center" justify="space-between">
-            <img src="/logo.png" alt="logo" height={80} width={480} />
+        <Group h='100%' px='md'>
+          <Burger opened={opened} onClick={toggle} hiddenFrom='sm' size='sm' />
+          <Flex direction='row' w='100%' align='center' justify='space-between'>
+            <img src='/logo.png' alt='logo' height={80} width={480} />
             <SigninButton />
           </Flex>
         </Group>
       </AppShell.Header>
-      <AppShell.Navbar p="md" color="grey">
+      <AppShell.Navbar p='md' color='grey'>
         {links}
       </AppShell.Navbar>
       <AppShell.Main>{children}</AppShell.Main>

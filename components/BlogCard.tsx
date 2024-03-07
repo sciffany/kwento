@@ -43,10 +43,12 @@ export function BlogCard({
     <Grid mb={10}>
       <Grid.Col span={6}>
         <Textarea
-          fw="bold"
-          placeholder="Text (in your language)"
+          fw='bold'
+          fz='xl'
+          size='xl'
+          placeholder='Text (in your language)'
           required
-          variant="unstyled"
+          variant='unstyled'
           {...form.getInputProps("text")}
           onChange={(e) => {
             form.setFieldValue("text", e.currentTarget.value);
@@ -57,7 +59,7 @@ export function BlogCard({
           }}
           rightSection={
             <IconTrash
-              cursor="pointer"
+              cursor='pointer'
               onClick={() => deleteBlogCard(blogCardId)}
             />
           }
@@ -65,9 +67,11 @@ export function BlogCard({
       </Grid.Col>
       <Grid.Col span={6}>
         <Textarea
-          fw="bold"
-          variant="unstyled"
-          placeholder="Text (in English)"
+          fw='bold'
+          fz='xl'
+          size='xl'
+          variant='unstyled'
+          placeholder='Text (in English)'
           {...form.getInputProps("englishText")}
           onChange={(e) => {
             form.setFieldValue("englishText", e.currentTarget.value);

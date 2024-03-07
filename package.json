@@ -24,8 +24,10 @@
     "next-auth": "4",
     "prisma": "^5.5.2",
     "react": "^18.2.0",
+    "react-datasheet-grid": "^4.11.4",
     "react-dom": "^18.2.0",
     "react-markdown": "8.0.0",
+    "react-media-recorder": "1.6.5",
     "swr": "^2.2.4",
     "vercel": "^32.5.0"
   },
