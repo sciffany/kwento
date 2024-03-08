@@ -187,6 +187,11 @@ const Grid = () => {
       title: "Recording",
       grow: 1,
     },
+    {
+      ...keyColumn("explanation", textColumn),
+      title: "Explanation",
+      grow: 3,
+    },
   ];
 
   return (
