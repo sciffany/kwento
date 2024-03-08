@@ -48,7 +48,6 @@ export default function BasicAppShell({
     <AppShell header={{ height: 80 }} padding='md'>
       <AppShell.Header>
         <Group h='100%' px='md'>
-          <Burger opened={opened} onClick={toggle} hiddenFrom='sm' size='sm' />
           <Flex direction='row' w='100%' align='center' justify='space-between'>
             <img src='/logo.png' alt='logo' height={80} width={480} />
             <SigninButton />

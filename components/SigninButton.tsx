@@ -1,3 +1,4 @@
+import { Group } from "@mantine/core";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const SigninButton = () => {
@@ -5,16 +6,31 @@ const SigninButton = () => {
 
   if (session && session.user) {
     return (
-      <div
-        onClick={() => {
-          signOut();
-        }}
-      >
-        Sign Out Button
-      </div>
+      <Group>
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            window.location.href = "/admin";
+          }}
+        >
+          My Stories
+        </div>
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            signOut();
+          }}
+        >
+          Sign Out
+        </div>
+      </Group>
     );
   }
-  return <div onClick={() => signIn()}>Sign In Button</div>;
+  return (
+    <div style={{ cursor: "pointer" }} onClick={() => signIn()}>
+      Sign In
+    </div>
+  );
 };
 
 export default SigninButton;

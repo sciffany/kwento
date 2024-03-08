@@ -6,12 +6,21 @@ import { IconEdit, IconBook, IconLogout } from "@tabler/icons-react";
 import classes from "./NavbarSimple.module.css";
 import SigninButton from "../../components/SigninButton";
 import axios from "axios";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function BasicAppShell({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  if (status === "unauthenticated") {
+    router.push("/api/auth/signin");
+  }
+
   const [opened, { toggle }] = useDisclosure();
 
   async function createBlog() {
@@ -56,9 +65,16 @@ export default function BasicAppShell({
     >
       <AppShell.Header>
         <Group h='100%' px='md'>
-          <Burger opened={opened} onClick={toggle} hiddenFrom='sm' size='sm' />
           <Flex direction='row' w='100%' align='center' justify='space-between'>
-            <img src='/logo.png' alt='logo' height={80} width={480} />
+            <Link href='/stories'>
+              <img
+                style={{ cursor: "pointer" }}
+                src='/logo.png'
+                alt='logo'
+                height={80}
+                width={480}
+              />
+            </Link>
             <SigninButton />
           </Flex>
         </Group>

@@ -3,6 +3,7 @@ import {
   Card,
   Center,
   Group,
+  Image,
   Paper,
   Popover,
   Stack,
@@ -52,27 +53,48 @@ export function Highlight({ word }: { word: string }) {
 export default function Story() {
   return (
     <Center>
-      <Paper m='xl' withBorder w={1200} p='xl'>
-        <Center>
+      <Paper m='xl' withBorder w='100%' p='xl'>
+        <Group>
+          <Image
+            src='https://www.aboutfilipinofood.com/wp-content/uploads/filipino-ice-cream-cart-sorbetero.jpg'
+            alt='Image loads here'
+            w={400}
+          />
           <Stack>
-            <Title>Ang Sorbetes</Title>
+            <Title>Lesson 1 - My First Ice Cream</Title>
             <Group>
               <div>
-                <Title c='blue' fz={28}>
+                <Text fz={28} fw='bold' component='span' c='blue'>
                   <span>
                     {words.map((word) => (
                       <Highlight key={word} word={word}></Highlight>
                     ))}
                   </span>
-                </Title>
+                </Text>
                 <Text fz='xl'>How much is the ice cream?</Text>
               </div>
-              <Text fz={28} c='gray' style={{ cursor: "pointer" }}>
+              <Text fz={28} c='blue' style={{ cursor: "pointer" }}>
+                ▶️
+              </Text>
+            </Group>
+
+            <Group>
+              <div>
+                <Text fz={28} fw='bold' component='span' c='blue'>
+                  <span>
+                    {"Sampung piso lang po!".split(" ").map((word) => (
+                      <Highlight key={word} word={word}></Highlight>
+                    ))}
+                  </span>
+                </Text>
+                <Text fz='xl'>Ten pesos only!</Text>
+              </div>
+              <Text fz={28} c='blue' style={{ cursor: "pointer" }}>
                 ▶️
               </Text>
             </Group>
           </Stack>
-        </Center>
+        </Group>
       </Paper>
     </Center>
   );
