@@ -128,6 +128,9 @@ import { useState } from "react";
 import { DataSheetGrid, textColumn, keyColumn } from "react-datasheet-grid";
 import { ReactMediaRecorder } from "react-media-recorder";
 import "react-datasheet-grid/dist/style.css";
+import ImageUploader from "../../../components/ImageUploader";
+import { TextInput } from "@mantine/core";
+import { useForm } from "@mantine/form";
 
 const Recorder = () => {
   return (
@@ -139,6 +142,7 @@ const Recorder = () => {
           <button onClick={stopRecording}>🟥</button>
           <button
             onClick={() => {
+              if (!mediaBlobUrl) return;
               const audio = new Audio(mediaBlobUrl);
               audio.play();
             }}
@@ -152,6 +156,16 @@ const Recorder = () => {
 };
 
 const Grid = () => {
+  const form = useForm({
+    initialValues: {
+      title: "",
+      englishTitle: "",
+    },
+  });
+  const [title, setTitle] = useState("Title in Tagalog" as string);
+  const [englishTitle, setEnglishTitle] = useState(
+    "Title in English" as string
+  );
   const [data, setData] = useState([
     { text: "Elon", subtext: "Musk" },
     { text: "Jeff", subtext: "Bezos" },
@@ -161,19 +175,37 @@ const Grid = () => {
     {
       ...keyColumn("text", textColumn),
       title: "Tagalog",
+      grow: 3,
     },
     {
       ...keyColumn("subtext", textColumn),
       title: "English",
+      grow: 3,
     },
     {
       component: Recorder,
       title: "Recording",
+      grow: 1,
     },
   ];
 
   return (
     <>
+      <ImageUploader />
+      <TextInput
+        fw='bold'
+        fz='xl'
+        width='full'
+        size='xl'
+        variant='unstyled'
+        placeholder='Title'
+        {...form.getInputProps("title")}
+        onChange={(e) => {
+          form.setFieldValue("title", e.currentTarget.value);
+        }}
+        required
+      ></TextInput>
+
       <DataSheetGrid value={data} onChange={setData as any} columns={columns} />
     </>
   );
