@@ -1,14 +1,15 @@
 import { Card, Center, Group, Image, Paper, Text, rem } from "@mantine/core";
-import { IconUpload, IconPhoto, IconX } from "@tabler/icons-react";
+import { IconUpload } from "@tabler/icons-react";
 import { Dropzone, DropzoneProps, IMAGE_MIME_TYPE } from "@mantine/dropzone";
-import { useState } from "react";
 
 export default function ImageUploader({
   onDrop,
   image,
+  originalImageUrl,
 }: {
   onDrop: DropzoneProps["onDrop"];
   image: File | null;
+  originalImageUrl?: string | null;
 }) {
   return (
     <Card>
@@ -26,27 +27,7 @@ export default function ImageUploader({
           mih={270}
           style={{ pointerEvents: "none" }}
         >
-          {!image ? (
-            <>
-              <IconUpload
-                style={{
-                  width: rem(52),
-                  height: rem(52),
-                  color: "var(--mantine-color-blue-6)",
-                }}
-                stroke={1.5}
-              />
-              <div>
-                <Text size='xl' inline>
-                  Drag images here or click to select files
-                </Text>
-                <Text size='sm' c='dimmed' inline mt={7}>
-                  Attach as many files as you like, each file should not exceed
-                  5mb
-                </Text>
-              </div>
-            </>
-          ) : (
+          {image ? (
             <Center>
               <Paper>
                 <Image
@@ -58,6 +39,36 @@ export default function ImageUploader({
                 />
               </Paper>
             </Center>
+          ) : originalImageUrl ? (
+            <Center>
+              <Paper>
+                <Image
+                  radius={20}
+                  src={originalImageUrl}
+                  alt='Image loads here'
+                  h={270}
+                  w={400}
+                />
+              </Paper>
+            </Center>
+          ) : (
+            <Paper withBorder radius={20} h={270} w={400}>
+              <Center h='100%'>
+                <IconUpload
+                  style={{
+                    width: rem(52),
+                    height: rem(52),
+                    color: "var(--mantine-color-blue-6)",
+                  }}
+                  stroke={1.5}
+                />
+                <div>
+                  <Text size='lg' inline>
+                    Drag images here or click to select files
+                  </Text>
+                </div>
+              </Center>
+            </Paper>
           )}
         </Group>
       </Dropzone>

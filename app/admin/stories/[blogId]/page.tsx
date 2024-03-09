@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DataSheetGrid, textColumn, keyColumn } from "react-datasheet-grid";
 import "react-datasheet-grid/dist/style.css";
 import ImageUploader from "../../../../components/ImageUploader";
@@ -10,6 +10,7 @@ import "./page.css";
 import { Recorder } from "../../../../components/Recorder";
 import { useParams } from "next/navigation";
 import { uploadMediaToGCS } from "../../../../lib/upload";
+import useBlog from "../../../../hooks/useBlog";
 
 const Recording = () => {
   return <ActionIcon>▶️</ActionIcon>;
@@ -24,6 +25,23 @@ const CreateEditPage = () => {
   ]);
   const [isDirty, setIsDirty] = useState(false);
   const [prevData, setPrevData] = useState(data);
+  const [imageUrl, setImageUrl] = useState<string | null>();
+
+  const { blog } = useBlog((params.blogId as string) ?? "");
+
+  useEffect(() => {
+    if (blog) {
+      setTitle(blog.title);
+      const transformedData = blog.blogCards.map((card) => ({
+        id: card.id,
+        text: card.content,
+        subtext: card.englishContent,
+      }));
+      setData(transformedData);
+      setPrevData(transformedData);
+      setImageUrl(blog?.imageUrl);
+    }
+  }, [blog]);
 
   const columns = [
     {
@@ -67,8 +85,6 @@ const CreateEditPage = () => {
 
   const save = async () => {
     const newData = data.filter(({ id }) => !deletedRowIds.has(id));
-    setData(newData);
-    setPrevData(newData);
 
     let imageUrl;
     if (droppedImage) {
@@ -80,8 +96,24 @@ const CreateEditPage = () => {
         method: "POST",
         body: JSON.stringify({ title: title, data: newData, imageUrl }),
       });
+    } else {
+      const updatedRows = data.filter(({ id }) => updatedRowIds.has(id));
+      const createdRows = data.filter(({ id }) => createdRowIds.has(id));
+      const deletedRows = data.filter(({ id }) => deletedRowIds.has(id));
+      await fetch(`/api/blogs/${params.blogId}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          title: title,
+          createdRows: createdRows,
+          updatedRows: updatedRows,
+          deletedRows: deletedRows,
+          imageUrl,
+        }),
+      });
     }
 
+    setData(newData);
+    setPrevData(newData);
     setDroppedImage(null);
     createdRowIds.clear();
     deletedRowIds.clear();
@@ -93,6 +125,7 @@ const CreateEditPage = () => {
   return (
     <>
       <ImageUploader
+        originalImageUrl={imageUrl}
         image={droppedImage}
         onDrop={(files: File[]) => {
           setDroppedImage(files[0]);

@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { BlogCardType } from "@prisma/client";
 
-type BlogData = {
+export type BlogData = {
   title: string;
   data: {
     id: string;
@@ -14,7 +14,7 @@ type BlogData = {
 };
 
 export async function POST(req: Request) {
-  const data = await req.json();
+  const data = (await req.json()) as BlogData;
 
   const session = await getServerSession(authOptions);
   const email = session?.user?.email;
