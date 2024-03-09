@@ -5,7 +5,17 @@ import { DataSheetGrid, textColumn, keyColumn } from "react-datasheet-grid";
 import { ReactMediaRecorder } from "react-media-recorder";
 import "react-datasheet-grid/dist/style.css";
 import ImageUploader from "../../../../components/ImageUploader";
-import { ActionIcon, Button, Flex, Text, TextInput } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Card,
+  Center,
+  Flex,
+  Image,
+  Paper,
+  Text,
+  TextInput,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { createId } from "@paralleldrive/cuid2";
 import "./page.css";
@@ -139,10 +149,16 @@ const Grid = () => {
     updatedRowIds.clear();
     setIsDirty(false);
   };
+  const [droppedImage, setDroppedImage] = useState<File | null>(null);
 
   return (
     <>
-      <ImageUploader />
+      <ImageUploader
+        image={droppedImage}
+        onDrop={(files: File[]) => {
+          setDroppedImage(files[0]);
+        }}
+      />
       <TextInput
         fw='bold'
         fz='xl'
@@ -218,7 +234,7 @@ const Grid = () => {
         }}
       />
 
-      {isDirty && (
+      {(isDirty || droppedImage) && (
         <Flex direction='row' w='100%' justify='flex-end'>
           <Button onClick={save}>Save</Button>
           <Button onClick={cancel}>Cancel</Button>
