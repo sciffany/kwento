@@ -1,136 +1,14 @@
-// "use client";
-
-// import { Button, Grid, TextInput } from "@mantine/core";
-// import React, { useCallback, useEffect } from "react";
-// import useBlog from "../../../hooks/useBlog";
-// import axios from "axios";
-// import { useParams } from "next/navigation";
-// import { useForm } from "@mantine/form";
-// import { Blog, BlogCard } from "@prisma/client";
-// import { BlogCard as BlogCardUI } from "../../../components/BlogCard";
-// import _ from "lodash";
-
-// export default function CreatePage() {
-//   const params = useParams();
-//   const { blog, mutate } = useBlog(params?.blogId as string);
-
-//   const form = useForm({
-//     initialValues: {
-//       title: "",
-//       englishTitle: "",
-//     },
-//   });
-
-//   useEffect(() => {
-//     if (blog) {
-//       form.setValues({
-//         title: blog.title,
-//         englishTitle: blog.englishTitle,
-//       });
-//     }
-//   }, [blog]);
-
-//   async function addBlogCard() {
-//     await axios.post("/api/blogCards", {
-//       blogId: blog?.id,
-//     });
-//     mutate();
-//   }
-
-//   async function saveBlogCard(
-//     blogCardId: string,
-//     blogCard: Pick<BlogCard, "content" | "englishContent">
-//   ) {
-//     await axios.post(`/api/blogCards/${blogCardId}`, blogCard);
-//   }
-
-//   async function saveTitle(
-//     blogId: string,
-//     blog: Pick<Blog, "title" | "englishTitle">
-//   ) {
-//     await axios.post(`/api/blogs/${blogId}`, blog);
-//   }
-
-//   async function deleteBlogCard(blogCardId: string) {
-//     await axios.delete(`/api/blogCards/${blogCardId}`);
-//     mutate();
-//   }
-
-//   const debouncedSaveTitle = useCallback(_.debounce(saveTitle, 1000), []);
-
-//   return (
-//     <>
-//       <Grid>
-//         <Grid.Col span={6}>
-//           <TextInput
-//             fw="bold"
-//             fz="xl"
-//             width="full"
-//             size="xl"
-//             variant="unstyled"
-//             placeholder="Title (in your language)"
-//             {...form.getInputProps("title")}
-//             onChange={(e) => {
-//               form.setFieldValue("title", e.currentTarget.value);
-//               debouncedSaveTitle(params?.blogId as string, {
-//                 title: e.currentTarget.value,
-//                 englishTitle: form.values.englishTitle,
-//               });
-//             }}
-//             required
-//           ></TextInput>
-//         </Grid.Col>
-
-//         <Grid.Col span={6}>
-//           <TextInput
-//             fw="bold"
-//             fz="xl"
-//             width="full"
-//             size="xl"
-//             variant="unstyled"
-//             placeholder="Title (in English)"
-//             {...form.getInputProps("englishTitle")}
-//             onChange={(e) => {
-//               form.setFieldValue("englishTitle", e.currentTarget.value);
-//               debouncedSaveTitle(params?.blogId as string, {
-//                 title: form.values.title,
-//                 englishTitle: e.currentTarget.value,
-//               });
-//             }}
-//             required
-//           ></TextInput>
-//         </Grid.Col>
-//       </Grid>
-
-//       {blog?.blogCards
-//         ?.sort(
-//           (a, b) =>
-//             new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-//         )
-//         .map((blogCard) => (
-//           <BlogCardUI
-//             key={blogCard.id}
-//             blogCardId={blogCard.id}
-//             saveBlogCard={saveBlogCard}
-//             deleteBlogCard={deleteBlogCard}
-//           />
-//         ))}
-
-//       <Button onClick={addBlogCard} color="navy">
-//         + Text
-//       </Button>
-//     </>
-//   );
-// }
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DataSheetGrid, textColumn, keyColumn } from "react-datasheet-grid";
 import { ReactMediaRecorder } from "react-media-recorder";
 import "react-datasheet-grid/dist/style.css";
 import ImageUploader from "../../../components/ImageUploader";
-import { ActionIcon, Text, TextInput } from "@mantine/core";
+import { ActionIcon, Button, Flex, Text, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { createId } from "@paralleldrive/cuid2";
+import "./page.css";
 
 const Recorder = () => {
   const [audio, setAudio] = useState<HTMLAudioElement | null | undefined>(null);
@@ -204,14 +82,12 @@ const Grid = () => {
       englishTitle: "",
     },
   });
-  const [title, setTitle] = useState("Title in Tagalog" as string);
-  const [englishTitle, setEnglishTitle] = useState(
-    "Title in English" as string
-  );
+
   const [data, setData] = useState([
-    { text: "Elon", subtext: "Musk" },
-    { text: "Jeff", subtext: "Bezos" },
+    { id: createId(), text: "Tagalog text", subtext: "English text" },
   ]);
+  const [isDirty, setIsDirty] = useState(false);
+  const [prevData, setPrevData] = useState(data);
 
   const columns = [
     {
@@ -225,13 +101,8 @@ const Grid = () => {
       grow: 2,
     },
     {
-      component: Recorder,
-      title: "Studio",
-      grow: 1,
-    },
-    {
       component: Recording,
-      title: "Playback",
+      title: "Preview",
       grow: 0.2,
     },
     {
@@ -239,7 +110,35 @@ const Grid = () => {
       title: "Explanation",
       grow: 2,
     },
+    {
+      component: Recorder,
+      title: "Studio",
+      grow: 1,
+    },
   ];
+
+  const createdRowIds = useMemo(() => new Set(), []);
+  const deletedRowIds = useMemo(() => new Set(), []);
+  const updatedRowIds = useMemo(() => new Set(), []);
+
+  const cancel = () => {
+    setData(prevData);
+    createdRowIds.clear();
+    deletedRowIds.clear();
+    updatedRowIds.clear();
+    setIsDirty(false);
+  };
+
+  const save = () => {
+    const newData = data.filter(({ id }) => !deletedRowIds.has(id));
+    setData(newData);
+    setPrevData(newData);
+
+    createdRowIds.clear();
+    deletedRowIds.clear();
+    updatedRowIds.clear();
+    setIsDirty(false);
+  };
 
   return (
     <>
@@ -258,7 +157,73 @@ const Grid = () => {
         required
       ></TextInput>
 
-      <DataSheetGrid value={data} onChange={setData as any} columns={columns} />
+      <DataSheetGrid
+        columns={columns}
+        value={data}
+        createRow={() => ({ id: createId() })}
+        duplicateRow={({ rowData }) => ({ ...rowData, id: createId() })}
+        rowClassName={({ rowData }) => {
+          if (deletedRowIds.has(rowData.id)) {
+            return "row-deleted";
+          }
+          if (createdRowIds.has(rowData.id)) {
+            return "row-created";
+          }
+          if (updatedRowIds.has(rowData.id)) {
+            return "row-updated";
+          }
+        }}
+        onChange={(newValue, operations) => {
+          for (const operation of operations) {
+            setIsDirty(true);
+            if (operation.type === "CREATE") {
+              newValue
+                .slice(operation.fromRowIndex, operation.toRowIndex)
+                .forEach(({ id }) => createdRowIds.add(id));
+            }
+
+            if (operation.type === "UPDATE") {
+              newValue
+                .slice(operation.fromRowIndex, operation.toRowIndex)
+                .forEach(({ id }) => {
+                  if (!createdRowIds.has(id) && !deletedRowIds.has(id)) {
+                    updatedRowIds.add(id);
+                  }
+                });
+            }
+
+            if (operation.type === "DELETE") {
+              let keptRows = 0;
+
+              data
+                .slice(operation.fromRowIndex, operation.toRowIndex)
+                .forEach(({ id }, i) => {
+                  updatedRowIds.delete(id);
+
+                  if (createdRowIds.has(id)) {
+                    createdRowIds.delete(id);
+                  } else {
+                    deletedRowIds.add(id);
+                    newValue.splice(
+                      operation.fromRowIndex + keptRows++,
+                      0,
+                      data[operation.fromRowIndex + i]
+                    );
+                  }
+                });
+            }
+          }
+
+          setData(newValue as any);
+        }}
+      />
+
+      {isDirty && (
+        <Flex direction='row' w='100%' justify='flex-end'>
+          <Button onClick={save}>Save</Button>
+          <Button onClick={cancel}>Cancel</Button>
+        </Flex>
+      )}
     </>
   );
 };
