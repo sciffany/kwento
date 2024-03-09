@@ -33,13 +33,12 @@ export default function Story() {
               <Image
                 src={blog?.imageUrl}
                 alt='Image loads here'
-                w={800}
-                h={540}
+                w='70%'
                 radius={20}
               />
             </Center>
             <Title>{blog?.title}</Title>
-            <Stack gap={80}>
+            <Stack gap={70}>
               {blog?.blogCards.map((card) => (
                 <Group>
                   <div>

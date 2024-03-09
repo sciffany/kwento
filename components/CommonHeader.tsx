@@ -13,8 +13,8 @@ export default function CommonHeader() {
         <Link href='/stories'>
           <img
             src='/logo.png'
-            width={360}
-            height={60}
+            width={300}
+            height={50}
             alt='Logo'
             style={{ cursor: "pointer" }}
           />

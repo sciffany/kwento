@@ -7,9 +7,11 @@ export default function HeaderMegaMenu({
   children: React.ReactNode;
 }) {
   return (
-    <AppShell padding='md'>
+    <AppShell padding='sm'>
       <CommonHeader />
-      <AppShell.Main p={100}>{children}</AppShell.Main>
+      <AppShell.Main px={20} p={100}>
+        {children}
+      </AppShell.Main>
     </AppShell>
   );
 }
