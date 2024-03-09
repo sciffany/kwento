@@ -29,7 +29,6 @@ export function BlogCard({
 
   useEffect(() => {
     if (blogCard) {
-      console.log(blogCard);
       form.setValues({
         text: blogCard.content,
         englishText: blogCard.englishContent,

@@ -1,39 +1,22 @@
 "use client";
 
 import { Box, Card, Grid, Image, SimpleGrid, Text } from "@mantine/core";
-import GenericHeader from "../../../components/HeaderMenu";
 import useBlogs from "../../../hooks/useBlogs";
+import BlogDisplay from "../../../components/BlogDisplay";
+import { useSession } from "next-auth/react";
 
 export default function () {
-  const { blogs } = useBlogs();
-
-  console.log(blogs);
+  const { data: session, status } = useSession();
+  const { blogs } = useBlogs({
+    userEmail:
+      status === "authenticated" ? (session?.user?.email as string) : undefined,
+    userId: undefined,
+  });
 
   return (
     <SimpleGrid cols={3} spacing='md'>
       {blogs?.map((blog) => (
-        <Card
-          key={blog.id}
-          withBorder
-          padding='xl'
-          component='a'
-          href={`/admin/stories/${blog.id}`}
-        >
-          {blog.imageUrl ? (
-            <Card.Section>
-              <Image src={blog.imageUrl} alt={blog.title} />
-            </Card.Section>
-          ) : (
-            <Card.Section c='blue' w={300} h={160} />
-          )}
-          <Text fw={500} size='lg' mt='md'>
-            {blog?.title}
-          </Text>
-
-          <Text mt='xs' c='dimmed' size='sm'>
-            {blog.blogCards?.[0]?.content}
-          </Text>
-        </Card>
+        <BlogDisplay blog={blog} href={`/admin/stories/${blog.id}`} />
       ))}
     </SimpleGrid>
   );

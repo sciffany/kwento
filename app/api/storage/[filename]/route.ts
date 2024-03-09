@@ -11,20 +11,15 @@ const cloudStorage = new Storage({
   },
 });
 
-export async function POST(request: Request, { params: { blogId } }) {
-  const data = await request.formData();
-  const file = data.get("file") as File;
-
-  if (!file || typeof file === "string") {
-    throw new Error("File not found");
-  }
-
-  const ext = file.name.split(".").pop();
-  const filename = createId();
+export async function GET(
+  request: Request,
+  { params }: { params: { filename: string } }
+) {
+  const ext = params.filename.split(".").pop();
 
   const bucket = cloudStorage.bucket(bucketName);
 
-  const newFile = bucket.file(filename + "." + ext);
+  const newFile = bucket.file(createId() + "." + ext);
   const options = {
     expires: Date.now() + 1 * 60 * 1000, //  1 minute,
     fields: { "x-goog-meta-test": "data" },
@@ -32,5 +27,5 @@ export async function POST(request: Request, { params: { blogId } }) {
 
   const [response] = await newFile.generateSignedPostPolicyV4(options);
 
-  return new Response(JSON.stringify(response));
+  return Response.json(response as any);
 }

@@ -1,23 +1,42 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "../../../lib/prisma";
 import { getServerSession } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
 import { authOptions } from "../auth/[...nextauth]/route";
+import { BlogCardType } from "@prisma/client";
+
+type BlogData = {
+  title: string;
+  data: {
+    id: string;
+    text: string;
+    subtext: string;
+  }[];
+  imageUrl: string;
+};
 
 export async function POST(req: Request) {
+  const data = await req.json();
+
   const session = await getServerSession(authOptions);
   const email = session?.user?.email;
 
   const newBlog = await prisma.blog.create({
     data: {
-      title: "",
+      title: data.title,
       englishTitle: "",
       user: {
         connect: {
           email: email as string,
         },
       },
-      languageCode: "en",
+      imageUrl: data.imageUrl,
+      languageCode: "fil",
+      blogCards: {
+        create: data.data.map((card) => ({
+          content: card.text,
+          englishContent: card.subtext,
+          blogCardType: BlogCardType.TEXT,
+        })),
+      },
     },
   });
 
@@ -25,15 +44,31 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
+  const url = new URL(req.url);
+
+  let email = url.searchParams.get("userEmail");
+  if (email === "") {
+    email = null;
+  }
+  let userId = url.searchParams.get("userId");
+  if (userId === "") {
+    userId = null;
+  }
 
   const blogs = await prisma.blog.findMany({
-    where: {
-      user: {
-        email: email as string,
-      },
-    },
+    where: userId
+      ? {
+          user: {
+            id: userId,
+          },
+        }
+      : email
+      ? {
+          user: {
+            email: email,
+          },
+        }
+      : {},
     include: {
       blogCards: {
         take: 1,

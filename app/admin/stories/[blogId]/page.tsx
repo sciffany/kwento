@@ -1,98 +1,24 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { DataSheetGrid, textColumn, keyColumn } from "react-datasheet-grid";
-import { ReactMediaRecorder } from "react-media-recorder";
 import "react-datasheet-grid/dist/style.css";
 import ImageUploader from "../../../../components/ImageUploader";
-import {
-  ActionIcon,
-  Button,
-  Card,
-  Center,
-  Flex,
-  Image,
-  Paper,
-  Text,
-  TextInput,
-} from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { ActionIcon, Button, Flex, TextInput } from "@mantine/core";
 import { createId } from "@paralleldrive/cuid2";
 import "./page.css";
-
-const Recorder = () => {
-  const [audio, setAudio] = useState<HTMLAudioElement | null | undefined>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    audio?.addEventListener("ended", () => {
-      setIsPlaying(false);
-    });
-  }, [audio]);
-
-  return (
-    <ReactMediaRecorder
-      audio
-      render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
-        <div>
-          {status === "recording" ? (
-            <ActionIcon
-              bg='#000000'
-              onClick={() => {
-                stopRecording();
-              }}
-            >
-              🟥
-            </ActionIcon>
-          ) : (
-            <ActionIcon bg='#000000' onClick={startRecording}>
-              🔴
-            </ActionIcon>
-          )}
-          {isPlaying ? (
-            <ActionIcon
-              onClick={() => {
-                audio?.pause();
-                setIsPlaying(false);
-              }}
-            >
-              ⏸️
-            </ActionIcon>
-          ) : (
-            <ActionIcon
-              onClick={() => {
-                if (!mediaBlobUrl) return;
-                const newAudio = new Audio(mediaBlobUrl);
-                newAudio?.play();
-                setAudio(newAudio);
-                setIsPlaying(true);
-              }}
-            >
-              ▶️
-            </ActionIcon>
-          )}
-
-          <ActionIcon bg='green' w={60} onClick={() => {}}>
-            Upload
-          </ActionIcon>
-        </div>
-      )}
-    />
-  );
-};
+import { Recorder } from "../../../../components/Recorder";
+import { useParams } from "next/navigation";
+import { uploadMediaToGCS } from "../../../../lib/upload";
 
 const Recording = () => {
   return <ActionIcon>▶️</ActionIcon>;
 };
 
-const Grid = () => {
-  const form = useForm({
-    initialValues: {
-      title: "",
-      englishTitle: "",
-    },
-  });
+const CreateEditPage = () => {
+  const params = useParams();
 
+  const [title, setTitle] = useState("Lesson Title");
   const [data, setData] = useState([
     { id: createId(), text: "Tagalog text", subtext: "English text" },
   ]);
@@ -139,11 +65,24 @@ const Grid = () => {
     setIsDirty(false);
   };
 
-  const save = () => {
+  const save = async () => {
     const newData = data.filter(({ id }) => !deletedRowIds.has(id));
     setData(newData);
     setPrevData(newData);
 
+    let imageUrl;
+    if (droppedImage) {
+      imageUrl = await uploadMediaToGCS(droppedImage);
+    }
+
+    if (params.blogId === "new") {
+      await fetch("/api/blogs", {
+        method: "POST",
+        body: JSON.stringify({ title: title, data: newData, imageUrl }),
+      });
+    }
+
+    setDroppedImage(null);
     createdRowIds.clear();
     deletedRowIds.clear();
     updatedRowIds.clear();
@@ -165,12 +104,12 @@ const Grid = () => {
         width='full'
         size='xl'
         variant='unstyled'
-        placeholder='Title'
-        {...form.getInputProps("title")}
-        onChange={(e) => {
-          form.setFieldValue("title", e.currentTarget.value);
-        }}
         required
+        value={title}
+        onChange={(event) => {
+          setTitle(event.currentTarget.value);
+          setIsDirty(true);
+        }}
       ></TextInput>
 
       <DataSheetGrid
@@ -244,4 +183,4 @@ const Grid = () => {
   );
 };
 
-export default Grid;
+export default CreateEditPage;
