@@ -54,10 +54,11 @@ model User {
 }
 
 model Blog {
-    id           String @id @default(cuid())
+    id           String  @id @default(cuid())
     title        String
     englishTitle String
     languageCode String
+    imageUrl     String?
 
     userId    String?
     user      User?      @relation(fields: [userId], references: [id])
@@ -73,6 +74,7 @@ model BlogCard {
     englishContent String
     image          String?
     blogCardType   BlogCardType
+    voiceUrl       String?
 
     blogId String?
     blog   Blog?   @relation(fields: [blogId], references: [id])

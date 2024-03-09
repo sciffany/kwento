@@ -1,7 +1,7 @@
 "use client";
 
 import { useDisclosure } from "@mantine/hooks";
-import { AppShell, Burger, Flex, Group } from "@mantine/core";
+import { AppShell, Flex, Group } from "@mantine/core";
 import { IconEdit, IconBook, IconLogout } from "@tabler/icons-react";
 import classes from "./NavbarSimple.module.css";
 import SigninButton from "../../components/SigninButton";
@@ -23,24 +23,13 @@ export default function BasicAppShell({
 
   const [opened, { toggle }] = useDisclosure();
 
-  async function createBlog() {
-    const { data: blog } = await axios.post("/api/blogs");
-    window.location.href = `/admin/${blog.data.id}`;
-  }
-
   const data = [
-    { action: createBlog, label: "Write Story", icon: IconEdit },
-    { link: "", label: "My Stories", icon: IconBook },
-    { link: "", label: "Logout", icon: IconLogout },
+    { link: "/admin/stories/new", label: "Write Story", icon: IconEdit },
+    { link: "/admin/stories", label: "My Stories", icon: IconBook },
   ];
 
   const links = data.map((item) => (
-    <a
-      className={classes.link}
-      href={item.link}
-      onClick={item.action}
-      key={item.label}
-    >
+    <a className={classes.link} href={item.link} key={item.label}>
       <Flex
         columnGap={10}
         style={{

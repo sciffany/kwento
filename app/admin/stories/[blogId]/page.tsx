@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { DataSheetGrid, textColumn, keyColumn } from "react-datasheet-grid";
 import { ReactMediaRecorder } from "react-media-recorder";
 import "react-datasheet-grid/dist/style.css";
-import ImageUploader from "../../../components/ImageUploader";
+import ImageUploader from "../../../../components/ImageUploader";
 import { ActionIcon, Button, Flex, Text, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { createId } from "@paralleldrive/cuid2";

@@ -23,3 +23,26 @@ export async function POST(req: Request) {
 
   return Response.json({ data: newBlog });
 }
+
+export async function GET(req: Request) {
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
+
+  const blogs = await prisma.blog.findMany({
+    where: {
+      user: {
+        email: email as string,
+      },
+    },
+    include: {
+      blogCards: {
+        take: 1,
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
+  });
+
+  return Response.json(blogs);
+}
