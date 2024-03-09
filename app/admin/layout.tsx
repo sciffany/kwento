@@ -9,6 +9,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import CommonHeader from "../../components/CommonHeader";
 
 export default function BasicAppShell({
   children,
@@ -52,22 +53,7 @@ export default function BasicAppShell({
       }}
       padding='md'
     >
-      <AppShell.Header>
-        <Group h='100%' px='md'>
-          <Flex direction='row' w='100%' align='center' justify='space-between'>
-            <Link href='/stories'>
-              <img
-                style={{ cursor: "pointer" }}
-                src='/logo.png'
-                alt='logo'
-                height={80}
-                width={480}
-              />
-            </Link>
-            <SigninButton />
-          </Flex>
-        </Group>
-      </AppShell.Header>
+      <CommonHeader />
       <AppShell.Navbar p='md' color='grey'>
         {links}
       </AppShell.Navbar>

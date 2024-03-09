@@ -10,14 +10,6 @@ const SigninButton = () => {
         <div
           style={{ cursor: "pointer" }}
           onClick={() => {
-            window.location.href = "/admin";
-          }}
-        >
-          My Stories
-        </div>
-        <div
-          style={{ cursor: "pointer" }}
-          onClick={() => {
             signOut();
           }}
         >

@@ -12,7 +12,7 @@ import {
 } from "@mantine/core";
 import SigninButton from "../components/SigninButton";
 import classes from "./Home.module.css";
-import GenericHeader from "../components/GenericHeader";
+import GenericHeader from "../components/HeaderMenu";
 
 export default function () {
   return (

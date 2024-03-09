@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Card, Grid, Image, SimpleGrid, Text } from "@mantine/core";
-import GenericHeader from "../../../components/GenericHeader";
+import GenericHeader from "../../../components/HeaderMenu";
 import useBlogs from "../../../hooks/useBlogs";
 
 export default function () {

@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Card, Grid, Image, Text } from "@mantine/core";
-import GenericHeader from "../../components/GenericHeader";
+import GenericHeader from "../../components/HeaderMenu";
 
 export default function () {
   return (
