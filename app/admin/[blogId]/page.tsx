@@ -124,32 +124,69 @@
 // }
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DataSheetGrid, textColumn, keyColumn } from "react-datasheet-grid";
 import { ReactMediaRecorder } from "react-media-recorder";
 import "react-datasheet-grid/dist/style.css";
 import ImageUploader from "../../../components/ImageUploader";
-import { TextInput } from "@mantine/core";
+import { ActionIcon, Text, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
 const Recorder = () => {
+  const [audio, setAudio] = useState<HTMLAudioElement | null | undefined>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    audio?.addEventListener("ended", () => {
+      setIsPlaying(false);
+    });
+  }, [audio]);
+
   return (
     <ReactMediaRecorder
       audio
       render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
         <div>
-          <button onClick={startRecording}>🔴</button>
-          <button onClick={stopRecording}>🟥</button>
-          <button
-            onClick={() => {
-              if (!mediaBlobUrl) return;
-              const audio = new Audio(mediaBlobUrl);
-              audio.play();
-            }}
-          >
-            ▶️
-          </button>
-          <button onClick={() => {}}>Upload</button>
+          {status === "recording" ? (
+            <ActionIcon
+              bg='#000000'
+              onClick={() => {
+                stopRecording();
+              }}
+            >
+              🟥
+            </ActionIcon>
+          ) : (
+            <ActionIcon bg='#000000' onClick={startRecording}>
+              🔴
+            </ActionIcon>
+          )}
+          {isPlaying ? (
+            <ActionIcon
+              onClick={() => {
+                audio?.pause();
+                setIsPlaying(false);
+              }}
+            >
+              ⏸️
+            </ActionIcon>
+          ) : (
+            <ActionIcon
+              onClick={() => {
+                if (!mediaBlobUrl) return;
+                const newAudio = new Audio(mediaBlobUrl);
+                newAudio?.play();
+                setAudio(newAudio);
+                setIsPlaying(true);
+              }}
+            >
+              ▶️
+            </ActionIcon>
+          )}
+
+          <ActionIcon bg='green' w={60} onClick={() => {}}>
+            Upload
+          </ActionIcon>
         </div>
       )}
     />
@@ -157,7 +194,7 @@ const Recorder = () => {
 };
 
 const Recording = () => {
-  return <button>▶️</button>;
+  return <ActionIcon>▶️</ActionIcon>;
 };
 
 const Grid = () => {
@@ -190,7 +227,7 @@ const Grid = () => {
     {
       component: Recorder,
       title: "Studio",
-      grow: 2,
+      grow: 1,
     },
     {
       component: Recording,
