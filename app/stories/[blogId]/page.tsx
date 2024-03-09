@@ -32,7 +32,7 @@ export function Highlight({ word }: { word: string }) {
       <Popover.Target>
         <span
           onMouseEnter={async () => {
-            const res = await fetch(`/api/google/${word}`, {
+            const res = await fetch(`/api/translate/${word}`, {
               cache: "force-cache",
             });
             const data = await res.json();

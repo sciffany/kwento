@@ -149,10 +149,15 @@ const Recorder = () => {
           >
             ▶️
           </button>
+          <button onClick={() => {}}>Upload</button>
         </div>
       )}
     />
   );
+};
+
+const Recording = () => {
+  return <button>▶️</button>;
 };
 
 const Grid = () => {
@@ -175,22 +180,27 @@ const Grid = () => {
     {
       ...keyColumn("text", textColumn),
       title: "Tagalog",
-      grow: 3,
+      grow: 2,
     },
     {
       ...keyColumn("subtext", textColumn),
       title: "English",
-      grow: 3,
+      grow: 2,
     },
     {
       component: Recorder,
-      title: "Recording",
-      grow: 1,
+      title: "Studio",
+      grow: 2,
+    },
+    {
+      component: Recording,
+      title: "Playback",
+      grow: 0.2,
     },
     {
       ...keyColumn("explanation", textColumn),
       title: "Explanation",
-      grow: 3,
+      grow: 2,
     },
   ];
 
