@@ -2,7 +2,8 @@ import { createId } from "@paralleldrive/cuid2";
 import { Storage } from "@google-cloud/storage";
 
 const bucketName = "kwento.sciffany.com";
-export const cloudStorage = new Storage({
+
+const cloudStorage = new Storage({
   projectId: "sciffany",
   credentials: {
     client_email: process.env.GCLOUD_EMAIL,
