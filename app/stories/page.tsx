@@ -1,19 +1,19 @@
 "use client";
 
-import { Box, Card, Grid, Image, Text } from "@mantine/core";
+import { Box, Card, Grid, Image, SimpleGrid, Text } from "@mantine/core";
 import GenericHeader from "../../components/HeaderMenu";
 
 export default function () {
   return (
     <GenericHeader>
       <Box m={20}>
-        <Grid>
+        <SimpleGrid cols={3} spacing={10}>
           {[1].map((item) => (
             <Card shadow='sm' padding='xl' component='a' href='/stories/1'>
               <Card.Section>
                 <Image
                   src='https://www.aboutfilipinofood.com/wp-content/uploads/filipino-ice-cream-cart-sorbetero.jpg'
-                  h={300}
+                  h={200}
                   alt='No way!'
                 />
               </Card.Section>
@@ -27,7 +27,7 @@ export default function () {
               </Text>
             </Card>
           ))}
-        </Grid>
+        </SimpleGrid>
       </Box>
     </GenericHeader>
   );
