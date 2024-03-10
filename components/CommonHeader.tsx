@@ -25,7 +25,7 @@ export default function CommonHeader() {
           <div
             style={{ cursor: "pointer" }}
             onClick={() => {
-              window.location.href = "/admin/stories";
+              router.push("/admin/stories");
             }}
           >
             My Stories
