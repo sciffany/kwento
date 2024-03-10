@@ -17,7 +17,12 @@ export function Highlight({ word }: { word: string }) {
     >
       <Popover.Target>
         <span
-          onMouseEnter={async () => {
+          style={{ cursor: "pointer" }}
+          onClick={async () => {
+            if (opened) {
+              close();
+              return;
+            }
             const res = await fetch(`/api/translate/${word}`, {
               cache: "force-cache",
             });
@@ -25,7 +30,6 @@ export function Highlight({ word }: { word: string }) {
             setTranslatedWord(data.word);
             open();
           }}
-          onMouseLeave={close}
         >
           {word}{" "}
         </span>

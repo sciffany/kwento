@@ -56,14 +56,16 @@ export const Recorder = ({ rowData }) => {
               ▶️
             </ActionIcon>
           )}
-
           <ActionIcon
             onClick={async () => {
               if (!mediaBlobUrl) return;
-              const myFile = new File([mediaBlobUrl], "demo.mp3", {
-                type: "video/mp3",
-              });
-              const voiceUrl = await uploadMediaToGCS(myFile);
+
+              const response = await fetch(mediaBlobUrl);
+              const blob = await response.blob();
+              console.log(blob);
+              const file = new File([blob], "audio.wav", { type: "audio/wav" });
+
+              const voiceUrl = await uploadMediaToGCS(file);
 
               return await fetch(`/api/blogs/${params.blogId}`, {
                 method: "PUT",
