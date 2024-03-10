@@ -13,8 +13,10 @@ import {
 import SigninButton from "../components/SigninButton";
 import classes from "./Home.module.css";
 import GenericHeader from "../components/HeaderMenu";
+import { useRouter } from "next/router";
 
 export default function () {
+  const router = useRouter();
   return (
     <GenericHeader>
       <div className={classes.root}>
@@ -52,7 +54,7 @@ export default function () {
             mt={40}
             fz='xl'
             onClick={() => {
-              window.location.href = "/stories";
+              router.push("/stories");
             }}
           >
             Learn Now

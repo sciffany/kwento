@@ -37,17 +37,18 @@ export async function POST(request: Request, { params: { blogId } }) {
 
 export type BlogUpdateData = {
   title: string;
-  createdRows: {
+  createdRows?: {
+    id: string;
+    text: string;
+    subtext: string;
+  }[];
+  updatedRows?: {
     id: string;
     text?: string;
     subtext?: string;
+    voiceUrl?: string;
   }[];
-  updatedRows: {
-    id: string;
-    text?: string;
-    subtext?: string;
-  }[];
-  deletedRows: {
+  deletedRows?: {
     id: string;
   }[];
   imageUrl: string;
@@ -66,21 +67,22 @@ export async function PUT(request: Request, { params: { blogId } }) {
       imageUrl: data.imageUrl,
       languageCode: "fil",
       blogCards: {
-        create: data.createdRows.map((card) => ({
-          content: card.text ?? "",
-          englishContent: card.subtext ?? "",
+        create: data.createdRows?.map((card) => ({
+          content: card.text,
+          englishContent: card.subtext,
           blogCardType: BlogCardType.TEXT,
         })),
-        update: data.updatedRows.map((card) => ({
+        update: data.updatedRows?.map((card) => ({
           where: {
             id: card.id,
           },
           data: {
-            content: card.text ?? "",
-            englishContent: card.subtext ?? "",
+            content: card.text,
+            englishContent: card.subtext,
+            voiceUrl: card.voiceUrl,
           },
         })),
-        delete: data.deletedRows.map((card) => ({
+        delete: data.deletedRows?.map((card) => ({
           id: card.id,
         })),
       },

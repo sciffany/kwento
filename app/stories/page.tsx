@@ -5,28 +5,19 @@ import GenericHeader from "../../components/HeaderMenu";
 import useBlogs from "../../hooks/useBlogs";
 import BlogDisplay from "../../components/BlogDisplay";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "@mantine/hooks";
 
 export default function () {
   const { blogs } = useBlogs({});
 
   const [width, setWidth] = useState<number>(window.innerWidth);
 
-  function handleWindowSizeChange() {
-    setWidth(window.innerWidth);
-  }
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, []);
-
-  const isMobile = width <= 768;
+  const mobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <GenericHeader>
       <Box m={20}>
-        <SimpleGrid cols={isMobile ? 1 : 3} spacing={20}>
+        <SimpleGrid cols={mobile ? 1 : 3} spacing={20}>
           {blogs?.map((blog) => (
             <BlogDisplay blog={blog} href={`/stories/${blog.id}`} />
           ))}
