@@ -10,8 +10,6 @@ import { useMediaQuery } from "@mantine/hooks";
 export default function () {
   const { blogs } = useBlogs({});
 
-  const [width, setWidth] = useState<number>(window.innerWidth);
-
   const mobile = useMediaQuery("(max-width: 768px)");
 
   return (
