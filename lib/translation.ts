@@ -14,7 +14,14 @@ export const cloudTranslate = new Translate({
 export async function getTranslation(text: string) {
   const target = "en";
 
-  const [translation] = await cloudTranslate.translate(text, target);
-
-  return translation;
+  try {
+    const [translation] = await cloudTranslate.translate(text, {
+      from: "fil",
+      to: "en",
+    });
+    console.log(`Text: ${translation}`);
+    return translation;
+  } catch (error) {
+    console.error("Error while translating:", error);
+  }
 }

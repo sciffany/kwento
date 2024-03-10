@@ -23,9 +23,13 @@ export function Highlight({ word }: { word: string }) {
               close();
               return;
             }
-            const res = await fetch(`/api/translate/${word}`, {
-              cache: "force-cache",
-            });
+            const res = await fetch(
+              `/api/translate/${word.toLowerCase().replace(/[^a-zA-Z ]/g, "")}`,
+              {
+                cache: "force-cache",
+              }
+            );
+            console.log(res.body);
             const data = await res.json();
             setTranslatedWord(data.word);
             open();

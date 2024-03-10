@@ -12,8 +12,19 @@ import { useParams } from "next/navigation";
 import { uploadMediaToGCS } from "../../../../lib/upload";
 import useBlog from "../../../../hooks/useBlog";
 
-const Recording = () => {
-  return <ActionIcon>▶️</ActionIcon>;
+const Recording = ({ rowData: card }) => {
+  return (
+    <ActionIcon
+      onClick={async () => {
+        if (!card?.voiceUrl) return;
+        const audio = new Audio(card?.voiceUrl);
+        await audio.play();
+      }}
+      style={{ cursor: "pointer" }}
+    >
+      ▶️
+    </ActionIcon>
+  );
 };
 
 const CreateEditPage = () => {
@@ -21,7 +32,12 @@ const CreateEditPage = () => {
 
   const [title, setTitle] = useState("Lesson Title");
   const [data, setData] = useState([
-    { id: createId(), text: "Tagalog text", subtext: "English text" },
+    {
+      id: createId(),
+      text: "Tagalog text",
+      subtext: "English text",
+      voiceUrl: "",
+    },
   ]);
   const [isDirty, setIsDirty] = useState(false);
   const [prevData, setPrevData] = useState(data);
@@ -36,6 +52,7 @@ const CreateEditPage = () => {
         id: card.id,
         text: card.content,
         subtext: card.englishContent,
+        voiceUrl: card.voiceUrl ?? "",
       }));
       setData(transformedData);
       setPrevData(transformedData);

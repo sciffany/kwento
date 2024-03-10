@@ -29,7 +29,7 @@ export default function BlogDisplay({
       </Text>
 
       <Text mt='xs' c='dimmed' size='sm'>
-        {blog.blogCards?.[0]?.content}
+        {blog.blogCards?.[0]?.content} ({blog.blogCards?.[0]?.englishContent})
       </Text>
     </Card>
   );

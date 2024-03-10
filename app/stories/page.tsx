@@ -1,10 +1,9 @@
 "use client";
 
-import { Box, Card, Grid, Image, SimpleGrid, Text } from "@mantine/core";
+import { Box, SimpleGrid } from "@mantine/core";
 import GenericHeader from "../../components/HeaderMenu";
 import useBlogs from "../../hooks/useBlogs";
 import BlogDisplay from "../../components/BlogDisplay";
-import { useEffect, useState } from "react";
 import { useMediaQuery } from "@mantine/hooks";
 
 export default function () {

@@ -73,7 +73,7 @@ export async function GET(req: Request) {
       blogCards: {
         take: 1,
         orderBy: {
-          createdAt: "desc",
+          createdAt: "asc",
         },
       },
     },
