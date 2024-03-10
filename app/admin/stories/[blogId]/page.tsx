@@ -43,6 +43,7 @@ const CreateEditPage = () => {
   const [isDirty, setIsDirty] = useState(false);
   const [prevData, setPrevData] = useState(data);
   const [imageUrl, setImageUrl] = useState<string | null>();
+  const [saving, setSaving] = useState(false);
 
   const { blog } = useBlog((params.blogId as string) ?? "");
 
@@ -103,6 +104,7 @@ const CreateEditPage = () => {
   };
 
   const save = async () => {
+    setSaving(true);
     const newData = data.filter(({ id }) => !deletedRowIds.has(id));
 
     let imageUrl;
@@ -113,7 +115,12 @@ const CreateEditPage = () => {
     if (params.blogId === "new") {
       await fetch("/api/blogs", {
         method: "POST",
-        body: JSON.stringify({ title: title, data: newData, imageUrl }),
+        body: JSON.stringify({
+          title: title,
+          data: newData,
+          imageUrl,
+          blogCardSequence: newData.map(({ id }) => id),
+        }),
       });
     } else {
       const updatedRows = data.filter(({ id }) => updatedRowIds.has(id));
@@ -127,6 +134,7 @@ const CreateEditPage = () => {
           updatedRows: updatedRows,
           deletedRows: deletedRows,
           imageUrl,
+          blogCardSequence: data.map(({ id }) => id),
         }),
       });
     }
@@ -138,6 +146,7 @@ const CreateEditPage = () => {
     deletedRowIds.clear();
     updatedRowIds.clear();
     setIsDirty(false);
+    setSaving(false);
   };
   const [droppedImage, setDroppedImage] = useState<File | null>(null);
 
@@ -227,7 +236,9 @@ const CreateEditPage = () => {
 
       {(isDirty || droppedImage) && (
         <Flex direction='row' w='100%' justify='flex-end'>
-          <Button onClick={save}>Save</Button>
+          <Button loading={saving} onClick={save}>
+            Save
+          </Button>
           <Button onClick={cancel}>Cancel</Button>
         </Flex>
       )}

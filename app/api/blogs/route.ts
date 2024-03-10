@@ -5,6 +5,7 @@ import { BlogCardType } from "@prisma/client";
 
 export type BlogData = {
   title: string;
+  blogCardSequence: string[];
   data: {
     id: string;
     text: string;
@@ -24,6 +25,7 @@ export async function POST(req: Request) {
     data: {
       title: data.title,
       englishTitle: "",
+      blogCardSequence: data.blogCardSequence,
       user: {
         connect: {
           email: email as string,
@@ -74,11 +76,28 @@ export async function GET(req: Request) {
     include: {
       blogCards: {
         take: 1,
-        orderBy: {
-          createdAt: "asc",
-        },
       },
     },
+  });
+
+  const blogCards = await Promise.all(
+    blogs.map(async (blog) => {
+      const card = await prisma.blogCard.findUnique({
+        where: {
+          id: blog.blogCardSequence?.[0] ?? "",
+        },
+      });
+
+      return card;
+    })
+  );
+
+  // Map each blog card to its respective blog
+  blogs.map((blog, index) => {
+    const respectiveCard = blogCards[index];
+    if (!!respectiveCard) {
+      blog.blogCards = [respectiveCard];
+    }
   });
 
   return Response.json(blogs);

@@ -33,6 +33,9 @@ export function Highlight({ word }: { word: string }) {
             setTranslatedWord(data.word);
             open();
           }}
+          onMouseLeave={() => {
+            close();
+          }}
         >
           {word}{" "}
         </span>

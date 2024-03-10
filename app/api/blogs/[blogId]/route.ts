@@ -8,12 +8,17 @@ export async function GET(request: Request, { params: { blogId } }) {
       id: blogId,
     },
     include: {
-      blogCards: {
-        orderBy: {
-          createdAt: "asc",
-        },
-      },
+      blogCards: true,
     },
+  });
+
+  const sequence = blog?.blogCardSequence as string[];
+
+  blog?.blogCards.sort((a, b) => {
+    return (
+      sequence.findIndex((id) => id === a.id) -
+      sequence.findIndex((id) => id === b.id)
+    );
   });
 
   return Response.json(blog);
@@ -37,6 +42,7 @@ export async function POST(request: Request, { params: { blogId } }) {
 
 export type BlogUpdateData = {
   title: string;
+  blogCardSequence: string[];
   createdRows?: {
     id: string;
     text: string;
@@ -68,6 +74,7 @@ export async function PUT(request: Request, { params: { blogId } }) {
       englishTitle: "",
       imageUrl: data.imageUrl,
       languageCode: "fil",
+      blogCardSequence: data.blogCardSequence,
       blogCards: {
         create: data.createdRows?.map((card) => ({
           content: card.text,

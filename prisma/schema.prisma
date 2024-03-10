@@ -54,11 +54,12 @@ model User {
 }
 
 model Blog {
-    id           String  @id @default(cuid())
-    title        String
-    englishTitle String
-    languageCode String
-    imageUrl     String?
+    id               String  @id @default(cuid())
+    title            String
+    englishTitle     String
+    languageCode     String
+    imageUrl         String?
+    blogCardSequence Json    @default("[]")
 
     userId    String?
     user      User?      @relation(fields: [userId], references: [id])
@@ -78,7 +79,7 @@ model BlogCard {
     voiceUrl       String?
 
     blogId String?
-    blog   Blog?   @relation(fields: [blogId], references: [id])
+    blog   Blog?   @relation(fields: [blogId], references: [id], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
