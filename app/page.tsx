@@ -13,7 +13,7 @@ import {
 import SigninButton from "../components/SigninButton";
 import classes from "./Home.module.css";
 import GenericHeader from "../components/HeaderMenu";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function () {
   const router = useRouter();
