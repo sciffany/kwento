@@ -57,16 +57,16 @@ export default function Story() {
                   >
                     ▶️
                   </Text>
-                  <Popover>
-                    <Popover.Target>
-                      <ActionIcon radius={100}>i</ActionIcon>
-                    </Popover.Target>
-                    <Popover.Dropdown w={300}>
-                      "po" is usually placed at the end of the sentence, or the
-                      second term, to show respect to the person you are talking
-                      to.
-                    </Popover.Dropdown>
-                  </Popover>
+                  {card?.explanation && (
+                    <Popover>
+                      <Popover.Target>
+                        <ActionIcon radius={100}>i</ActionIcon>
+                      </Popover.Target>
+                      <Popover.Dropdown w={300}>
+                        {card?.explanation ?? ""}
+                      </Popover.Dropdown>
+                    </Popover>
+                  )}
                 </Group>
               ))}
             </Stack>

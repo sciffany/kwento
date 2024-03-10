@@ -12,7 +12,6 @@ export const uploadMediaToGCS = async (file: File) => {
     Object.entries({ ...fields, file }).forEach(
       ([key, value]: [key: string, value: any]) => {
         formData.append(key, value);
-        console.log(key, value);
       }
     );
     try {

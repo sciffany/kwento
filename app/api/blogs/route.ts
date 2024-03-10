@@ -9,6 +9,7 @@ export type BlogData = {
     id: string;
     text: string;
     subtext: string;
+    explanation: string;
   }[];
   imageUrl: string;
 };
@@ -35,6 +36,7 @@ export async function POST(req: Request) {
           content: card.text,
           englishContent: card.subtext,
           blogCardType: BlogCardType.TEXT,
+          explanation: card.explanation,
         })),
       },
     },

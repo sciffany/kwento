@@ -74,6 +74,7 @@ model BlogCard {
     englishContent String
     image          String?
     blogCardType   BlogCardType
+    explanation    String?
     voiceUrl       String?
 
     blogId String?

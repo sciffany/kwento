@@ -41,12 +41,14 @@ export type BlogUpdateData = {
     id: string;
     text: string;
     subtext: string;
+    explanation: string;
   }[];
   updatedRows?: {
     id: string;
     text?: string;
     subtext?: string;
     voiceUrl?: string;
+    explanation?: string;
   }[];
   deletedRows?: {
     id: string;
@@ -71,6 +73,7 @@ export async function PUT(request: Request, { params: { blogId } }) {
           content: card.text,
           englishContent: card.subtext,
           blogCardType: BlogCardType.TEXT,
+          explanation: card.explanation,
         })),
         update: data.updatedRows?.map((card) => ({
           where: {
@@ -80,6 +83,7 @@ export async function PUT(request: Request, { params: { blogId } }) {
             content: card.text,
             englishContent: card.subtext,
             voiceUrl: card.voiceUrl,
+            explanation: card.explanation,
           },
         })),
         delete: data.deletedRows?.map((card) => ({

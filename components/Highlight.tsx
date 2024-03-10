@@ -29,7 +29,6 @@ export function Highlight({ word }: { word: string }) {
                 cache: "force-cache",
               }
             );
-            console.log(res.body);
             const data = await res.json();
             setTranslatedWord(data.word);
             open();

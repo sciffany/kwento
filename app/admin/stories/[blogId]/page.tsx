@@ -37,6 +37,7 @@ const CreateEditPage = () => {
       text: "Tagalog text",
       subtext: "English text",
       voiceUrl: "",
+      explanation: "Explanation",
     },
   ]);
   const [isDirty, setIsDirty] = useState(false);
@@ -53,6 +54,7 @@ const CreateEditPage = () => {
         text: card.content,
         subtext: card.englishContent,
         voiceUrl: card.voiceUrl ?? "",
+        explanation: card.explanation ?? "",
       }));
       setData(transformedData);
       setPrevData(transformedData);

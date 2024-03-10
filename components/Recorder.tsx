@@ -62,7 +62,6 @@ export const Recorder = ({ rowData }) => {
 
               const response = await fetch(mediaBlobUrl);
               const blob = await response.blob();
-              console.log(blob);
               const file = new File([blob], "audio.wav", { type: "audio/wav" });
 
               const voiceUrl = await uploadMediaToGCS(file);
