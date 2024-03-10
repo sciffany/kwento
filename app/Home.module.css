@@ -5,6 +5,10 @@
   background-image: linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, grey, 70%);
   padding-top: calc(var(--mantine-spacing-xl) * 3);
   padding-bottom: calc(var(--mantine-spacing-xl) * 3);
+  @media (min-width: 768px) {
+    padding-left: 10%;
+    width: 60%;
+  }
 }
 
 .inner {
