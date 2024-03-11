@@ -77,6 +77,7 @@ export async function PUT(request: Request, { params: { blogId } }) {
       blogCardSequence: data.blogCardSequence,
       blogCards: {
         create: data.createdRows?.map((card) => ({
+          id: card.id,
           content: card.text,
           englishContent: card.subtext,
           blogCardType: BlogCardType.TEXT,
@@ -87,6 +88,7 @@ export async function PUT(request: Request, { params: { blogId } }) {
             id: card.id,
           },
           data: {
+            id: card.id,
             content: card.text,
             englishContent: card.subtext,
             voiceUrl: card.voiceUrl,
