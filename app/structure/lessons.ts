@@ -326,8 +326,7 @@ const UNIT3_LESSONS = [
     title: "Sitting 🪑",
     sentences: [
       {
-        text: "앉다",
-        translation: "To sit",
+        parts: [{ text: "앉다", translation: "To sit" }],
       },
       {
         parts: [
@@ -347,8 +346,7 @@ const UNIT3_LESSONS = [
     title: "Seeing 👀",
     sentences: [
       {
-        text: "보다",
-        translation: "To see",
+        parts: [{ text: "보다", translation: "To see" }],
       },
       {
         parts: [
