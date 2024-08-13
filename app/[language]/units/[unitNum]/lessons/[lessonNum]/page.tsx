@@ -49,7 +49,13 @@ export default function Lesson({ params: { lessonNum, language, unitNum } }) {
                   `/${language}/units/${unitNum}/lessons/${lessonNum + 1}`
                 );
               } else {
-                router.push(`/stories/${languageLessons[unitNum - 1].blogId}`);
+                if (languageLessons[unitNum - 1].blogId) {
+                  router.push(
+                    `/stories/${languageLessons[unitNum - 1].blogId}`
+                  );
+                } else {
+                  router.push(`/${language}`);
+                }
               }
             }}
           >

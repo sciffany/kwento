@@ -1,3 +1,5 @@
+import { title } from "process";
+
 export const UNIT1_LESSONS = [
   {
     title: "Hello 👋",
@@ -67,6 +69,14 @@ export const UNIT1_LESSONS = [
               {
                 text: "제이미",
                 translation: "Jamie",
+              },
+              {
+                text: "고양이",
+                translation: "a cat",
+              },
+              {
+                text: "강아지",
+                translation: "a puppy",
               },
             ],
           },
@@ -174,6 +184,430 @@ export const UNIT1_LESSONS = [
   },
 ];
 
+const UNIT2_LESSONS = [
+  {
+    title: "Thank you 🙏",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "감사합니다",
+            translation: "Thank you (formal)",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "고마워요",
+            translation: "Thank you (informal)",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Excuse me 🙇",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "실례합니다",
+            translation: "Excuse me",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Wait a moment ⏳",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "잠깐만요",
+            translation: "Wait a moment",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Wait a moment ⏳",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "잠깐만요",
+            translation: "Wait a moment",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "I'm fine 🤗",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "괜찮아요",
+            translation: "I'm fine",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const UNIT3_LESSONS = [
+  {
+    title: "Eating 🍽️",
+    sentences: [
+      {
+        parts: [{ text: "먹다", translation: "To eat" }],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "먹어요",
+            translation: "eat",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Drinking 🥤",
+    sentences: [
+      {
+        parts: [{ text: "마시다", translation: "To drink" }],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "마셔요",
+            translation: "drink",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "Going 🚶",
+    sentences: [
+      {
+        parts: [{ text: "가다", translation: "To go" }],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "가요",
+            translation: "go",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Sitting 🪑",
+    sentences: [
+      {
+        text: "앉다",
+        translation: "To sit",
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me",
+          },
+          {
+            text: "앉아요",
+            translation: "sit",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Seeing 👀",
+    sentences: [
+      {
+        text: "보다",
+        translation: "To see",
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "봐요",
+            translation: "see",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Hearing 👂",
+    sentences: [
+      {
+        parts: [{ text: "듣다", translation: "To hear" }],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "듣아요",
+            translation: "hear",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const UNIT4_LESSONS = [
+  {
+    title: "Eating 🍽️",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "피자",
+                translation: "pizza 🍕",
+              },
+              {
+                text: "닭고기",
+                translation: "chicken 🍗",
+              },
+              {
+                text: "햄버거",
+                translation: "hamburger 🍔",
+              },
+            ],
+          },
+          {
+            text: "릴",
+            translation: "object marker (for vowel-ending words)",
+          },
+          {
+            text: "먹어요",
+            translation: "eat",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "빵",
+                translation: "bread 🍞",
+              },
+              {
+                text: "밥",
+                translation: "rice 🍚",
+              },
+              {
+                text: "음식",
+                translation: "food",
+              },
+            ],
+          },
+          {
+            text: "을",
+            translation: "object marker (for consonant-ending words)",
+          },
+          {
+            text: "먹어요",
+            translation: "eat",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Watching 📺",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "영화",
+                translation: "Movie 🎥",
+              },
+              {
+                text: "티비",
+                translation: "TV 📺",
+              },
+            ],
+          },
+          {
+            text: "릴",
+            translation: "object marker (for vowel-ending words)",
+          },
+          {
+            text: "봐요",
+            translation: "see",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Listening 👂",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "노래",
+                translation: "Music 🎵",
+              },
+            ],
+          },
+          {
+            text: "릴",
+            translation: "object marker (for vowel-ending words)",
+          },
+          {
+            text: "듣아요",
+            translation: "hear",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const UNIT5_LESSONS = [
+  {
+    title: "Family 👨‍👩‍👧‍",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "가족",
+            translation: "Family",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "엄마",
+            translation: "Mom",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "아빠",
+            translation: "Dad",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "할머니",
+            translation: "Grandmother",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "할아버지",
+            translation: "Grandfather",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "아들",
+            translation: "Son",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "딸",
+            translation: "Daughter",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "형",
+            translation: "Older brother",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "누나",
+            translation: "Older sister",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "동생",
+            translation: "Younger sibling",
+          },
+        ],
+      },
+    ],
+  },
+];
+
 export const LESSONS = {
   korean: [
     {
@@ -181,6 +615,30 @@ export const LESSONS = {
       lessons: UNIT1_LESSONS,
       blogId: "clzpj34ct0000l608ny7q34to",
       emoji: "👋",
+    },
+    {
+      title: "Expressions",
+      lessons: UNIT2_LESSONS,
+      blogId: "",
+      emoji: "🙏",
+    },
+    {
+      title: "Basic Verbs",
+      lessons: UNIT3_LESSONS,
+      blogId: "",
+      emoji: "🏃‍♂️",
+    },
+    {
+      title: "Object Marker",
+      lessons: UNIT4_LESSONS,
+      blogId: "",
+      emoji: "🎯",
+    },
+    {
+      title: "Family",
+      lessons: UNIT5_LESSONS,
+      blogId: "",
+      emoji: "👨‍👩‍👧‍",
     },
   ],
 };
