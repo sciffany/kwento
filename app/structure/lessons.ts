@@ -520,85 +520,226 @@ const UNIT4_LESSONS = [
 
 const UNIT5_LESSONS = [
   {
-    title: "Family 👨‍👩‍👧‍",
+    title: "Home 🏠",
     sentences: [
       {
         parts: [
           {
-            text: "가족",
-            translation: "Family",
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "집",
+            translation: "Home",
+          },
+          {
+            text: "에",
+            translation: "location marker",
+          },
+          {
+            text: "가요",
+            translation: "go",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "School 🏫",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "학교",
+            translation: "School",
+          },
+          {
+            text: "에",
+            translation: "location marker",
+          },
+          {
+            text: "가요",
+            translation: "go",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Library 📚",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "도서관",
+            translation: "Library",
+          },
+          {
+            text: "에",
+            translation: "location marker",
+          },
+          {
+            text: "가요",
+            translation: "go",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Park 🌳",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "공원",
+            translation: "Park",
+          },
+          {
+            text: "에",
+            translation: "location marker",
+          },
+          {
+            text: "가요",
+            translation: "go",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const UNIT6_LESSONS = [
+  {
+    title: "Family members doing things 👨‍👩‍👧‍",
+    sentences: [
+      {
+        parts: [
+          {
+            choices: [
+              {
+                text: "엄마",
+                translation: "Mom",
+              },
+              {
+                text: "아빠",
+                translation: "Dad",
+              },
+              {
+                text: "할아버지",
+                translation: "Grandfather",
+              },
+              {
+                text: "할머니",
+                translation: "Grandmother",
+              },
+            ],
+          },
+          {
+            text: "는",
+            translation: "topic marker",
+          },
+          {
+            choices: [
+              { text: "집에가요", translation: "Go home" },
+              {
+                text: "닭고기 먹어요",
+                translation: "eat chicken",
+              },
+              {
+                text: "영화 봐요",
+                translation: "watch a movie",
+              },
+              {
+                text: "노래 들어요",
+                translation: "listen to song",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Have or have not 🏠",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "형",
+                translation: "Older brother (for male speakers)",
+              },
+              {
+                text: "남동생",
+                translation: "Younger brother",
+              },
+              {
+                text: "여동생",
+                translation: "Younger sister",
+              },
+            ],
+          },
+          {
+            text: "이",
+            translation: "subject marker (for consonant-ending words)",
+          },
+          {
+            choices: [
+              { text: "있어요", translation: "have" },
+              { text: "없어요", translation: "do not have" },
+            ],
           },
         ],
       },
       {
         parts: [
           {
-            text: "엄마",
-            translation: "Mom",
+            text: "저는",
+            translation: "As for me,",
           },
-        ],
-      },
-      {
-        parts: [
           {
-            text: "아빠",
-            translation: "Dad",
+            choices: [
+              {
+                text: "누나",
+                translation: "Older sister (for male speakers)",
+              },
+              {
+                text: "언니",
+                translation: "Older sister (for female speakers)",
+              },
+              {
+                text: "오빠",
+                translation: "Older brother (for female speakers)",
+              },
+            ],
           },
-        ],
-      },
-      {
-        parts: [
           {
-            text: "할머니",
-            translation: "Grandmother",
+            text: "가",
+            translation: "subject marker (for vowel-ending words)",
           },
-        ],
-      },
-      {
-        parts: [
           {
-            text: "할아버지",
-            translation: "Grandfather",
-          },
-        ],
-      },
-      {
-        parts: [
-          {
-            text: "아들",
-            translation: "Son",
-          },
-        ],
-      },
-      {
-        parts: [
-          {
-            text: "딸",
-            translation: "Daughter",
-          },
-        ],
-      },
-      {
-        parts: [
-          {
-            text: "형",
-            translation: "Older brother",
-          },
-        ],
-      },
-      {
-        parts: [
-          {
-            text: "누나",
-            translation: "Older sister",
-          },
-        ],
-      },
-      {
-        parts: [
-          {
-            text: "동생",
-            translation: "Younger sibling",
+            choices: [
+              { text: "있어요", translation: "have" },
+              { text: "없어요", translation: "do not have" },
+            ],
           },
         ],
       },
@@ -633,8 +774,14 @@ export const LESSONS = {
       emoji: "🎯",
     },
     {
-      title: "Family",
+      title: "Location Marker",
       lessons: UNIT5_LESSONS,
+      blogId: "",
+      emoji: "📍",
+    },
+    {
+      title: "Family",
+      lessons: UNIT6_LESSONS,
       blogId: "",
       emoji: "👨‍👩‍👧‍",
     },
