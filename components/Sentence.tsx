@@ -23,7 +23,7 @@ export default function Sentence({
   );
 
   return (
-    <Flex direction={"row"} columnGap={50} align='center'>
+    <Flex direction={"row"} wrap='wrap' columnGap={50} align='center'>
       {parts.map((part, j) =>
         part.choices ? (
           <Paper
