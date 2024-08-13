@@ -1,4 +1,12 @@
 import { title } from "process";
+import {
+  FIL_UNIT1_LESSONS,
+  FIL_UNIT2_LESSONS,
+  FIL_UNIT3_LESSONS,
+  FIL_UNIT4_LESSONS,
+  FIL_UNIT5_LESSONS,
+  FIL_UNIT6_LESSONS,
+} from "./filipino";
 
 export const UNIT1_LESSONS = [
   {
@@ -186,6 +194,27 @@ export const UNIT1_LESSONS = [
 
 const UNIT2_LESSONS = [
   {
+    title: "Yes or No? 🤔",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "네",
+            translation: "Yes",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "아니요",
+            translation: "No",
+          },
+        ],
+      },
+    ],
+  },
+  {
     title: "Thank you 🙏",
     sentences: [
       {
@@ -214,19 +243,6 @@ const UNIT2_LESSONS = [
           {
             text: "실례합니다",
             translation: "Excuse me",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Wait a moment ⏳",
-    sentences: [
-      {
-        parts: [
-          {
-            text: "잠깐만요",
-            translation: "Wait a moment",
           },
         ],
       },
@@ -782,6 +798,44 @@ export const LESSONS = {
     {
       title: "Family",
       lessons: UNIT6_LESSONS,
+      blogId: "",
+      emoji: "👨‍👩‍👧‍",
+    },
+  ],
+  filipino: [
+    {
+      title: "Introductions",
+      lessons: FIL_UNIT1_LESSONS,
+      blogId: "",
+      emoji: "👋",
+    },
+    {
+      title: "Expressions",
+      lessons: FIL_UNIT2_LESSONS,
+      blogId: "",
+      emoji: "🙏",
+    },
+    {
+      title: "Present Tense Verbs",
+      lessons: FIL_UNIT3_LESSONS,
+      blogId: "",
+      emoji: "🏃‍♂️",
+    },
+    {
+      title: "Object Marker",
+      lessons: FIL_UNIT4_LESSONS,
+      blogId: "",
+      emoji: "🎯",
+    },
+    {
+      title: "'Sa' Preposition",
+      lessons: FIL_UNIT5_LESSONS,
+      blogId: "",
+      emoji: "📍",
+    },
+    {
+      title: "Family",
+      lessons: FIL_UNIT6_LESSONS,
       blogId: "",
       emoji: "👨‍👩‍👧‍",
     },

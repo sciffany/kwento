@@ -1,6 +1,6 @@
 import { ActionIcon, Center, Flex, Paper, Text } from "@mantine/core";
 import { useListState } from "@mantine/hooks";
-import { COLORS } from "../app/structure/lessons";
+import { COLORS } from "../app/structure/korean";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { useState } from "react";
 

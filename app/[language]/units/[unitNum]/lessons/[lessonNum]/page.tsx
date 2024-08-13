@@ -3,7 +3,7 @@
 import { ActionIcon, Box, Center, Divider, Flex, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { LESSONS } from "../../../../../structure/lessons";
+import { LESSONS } from "../../../../../structure/korean";
 import Sentence from "../../../../../../components/Sentence";
 
 export default function Lesson({ params: { lessonNum, language, unitNum } }) {

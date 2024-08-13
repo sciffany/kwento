@@ -1,6 +1,6 @@
 "use client";
 import { Center, Flex, Grid, Paper, Text } from "@mantine/core";
-import { COLORS, LESSONS } from "../structure/lessons";
+import { COLORS, LESSONS } from "../structure/korean";
 import { useRouter } from "next/navigation";
 
 export default function Units({ params: { language } }) {
