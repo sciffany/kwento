@@ -23,25 +23,45 @@ export function Highlight({ word }: { word: string }) {
               close();
               return;
             }
-            const res = await fetch(
-              `/api/translate/${word.toLowerCase().replace(/[^a-zA-Z ]/g, "")}`,
-              {
-                cache: "force-cache",
-              }
-            );
+            const res = await fetch(`/api/translate/`, {
+              method: "POST",
+              body: JSON.stringify({ word: word.toLowerCase() }),
+              cache: "force-cache",
+            });
             const data = await res.json();
             setTranslatedWord(data.word);
             open();
-          }}
-          onMouseLeave={() => {
-            close();
           }}
         >
           {word}{" "}
         </span>
       </Popover.Target>
       <Popover.Dropdown>
-        <Text>{translatedWord}</Text>
+        <>
+          <Text>
+            {word} ({translatedWord})
+            <Text
+              onClick={async () => {
+                const res = await fetch(`/api/tts/`, {
+                  method: "POST",
+                  body: JSON.stringify({
+                    text: word,
+                  }),
+                  cache: "force-cache",
+                });
+
+                // Stream audio received from the server
+                const audio = new Audio(URL.createObjectURL(await res.blob()));
+                audio.play();
+              }}
+              fz={28}
+              c='blue'
+              style={{ cursor: "pointer" }}
+            >
+              ▶️
+            </Text>
+          </Text>
+        </>
       </Popover.Dropdown>
     </Popover>
   );

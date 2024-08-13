@@ -24,12 +24,14 @@ export default function Story() {
         <Paper m='xl' withBorder w='100%' p='xl'>
           <Stack align='center' w='100%'>
             <Center>
-              <Image
-                src={blog?.imageUrl}
-                alt='Image loads here'
-                w='70%'
-                radius={20}
-              />
+              {!!blog?.imageUrl && (
+                <Image
+                  src={blog?.imageUrl}
+                  alt='Image loads here'
+                  w='70%'
+                  radius={20}
+                />
+              )}
             </Center>
             <Title>{blog?.title}</Title>
             <Stack gap={70}>
@@ -47,9 +49,19 @@ export default function Story() {
                   </div>
                   <Text
                     onClick={async () => {
-                      if (!card?.voiceUrl) return;
-                      const audio = new Audio(card?.voiceUrl);
-                      await audio.play();
+                      const res = await fetch(`/api/tts/`, {
+                        method: "POST",
+                        body: JSON.stringify({
+                          text: card.content,
+                        }),
+                        cache: "force-cache",
+                      });
+
+                      // Stream audio received from the server
+                      const audio = new Audio(
+                        URL.createObjectURL(await res.blob())
+                      );
+                      audio.play();
                     }}
                     fz={28}
                     c='blue'

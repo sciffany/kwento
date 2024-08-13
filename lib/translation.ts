@@ -16,10 +16,9 @@ export async function getTranslation(text: string) {
 
   try {
     const [translation] = await cloudTranslate.translate(text, {
-      from: "fil",
+      from: "ko",
       to: "en",
     });
-    console.log(`Text: ${translation}`);
     return translation;
   } catch (error) {
     console.error("Error while translating:", error);
