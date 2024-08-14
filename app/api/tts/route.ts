@@ -1,24 +1,32 @@
-import OpenAI from "openai";
+const projectId = "sciffany";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+import textToSpeech from "@google-cloud/text-to-speech";
+
+// Creates a client
+const client = new textToSpeech.TextToSpeechClient({
+  projectId: projectId,
+  credentials: {
+    client_email: process.env.GCLOUD_EMAIL,
+    private_key: process.env.GCLOUD_KEY?.replace(/\\n/g, "\n"),
+  },
 });
 
 export async function POST(req: Request) {
   const json = await req.json();
-  const mp3 = await openai.audio.speech.create({
-    model: "tts-1",
-    voice: "echo",
-    input: json.text,
-  });
 
-  // Return the audio file to client
-  const buffer = Buffer.from(await mp3.arrayBuffer());
+  const request = {
+    input: { text: json.text },
+    voice: { languageCode: "ko", ssmlGender: "NEUTRAL" as any },
+    audioConfig: { audioEncoding: "MP3" as any },
+  };
 
-  return new Response(buffer, {
+  const [response] = await client.synthesizeSpeech(request);
+
+  // Stream the audio back to the client
+
+  return new Response(response.audioContent, {
     headers: {
       "Content-Type": "audio/mpeg",
-      "Content-Disposition": "attachment; filename=tts.mp3",
     },
   });
 }

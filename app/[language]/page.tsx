@@ -16,7 +16,7 @@ export default function Units({ params: { language } }) {
       </Center>
       <Grid p={20}>
         {languageLessons.map((unit, i) => (
-          <Grid.Col span={4}>
+          <Grid.Col key={unit.title} span={4}>
             <Paper
               h={150}
               radius='lg'
