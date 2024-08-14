@@ -23,7 +23,7 @@ export default function Lesson({ params: { lessonNum, language, unitNum } }) {
         {languageLessons[unitNum - 1].lessons[lessonNum - 1].sentences.map(
           (sentence, i) => (
             <>
-              <Sentence parts={sentence.parts} i={i} />
+              <Sentence language={language} parts={sentence.parts} i={i} />
               <Divider mt='lg' style={{ borderTopStyle: "dashed" }} />
             </>
           )

@@ -2,8 +2,10 @@
 import { Center, Flex, Grid, Paper, Text } from "@mantine/core";
 import { COLORS, LESSONS } from "../structure/korean";
 import { useRouter } from "next/navigation";
+import { useMediaQuery } from "@react-hook/media-query";
 
 export default function Units({ params: { language } }) {
+  const matches = useMediaQuery("(min-width: 56.25em)");
   const languageLessons = LESSONS[language];
   const router = useRouter();
 
@@ -16,7 +18,7 @@ export default function Units({ params: { language } }) {
       </Center>
       <Grid p={20}>
         {languageLessons.map((unit, i) => (
-          <Grid.Col key={unit.title} span={4}>
+          <Grid.Col key={unit.title} span={matches ? 4 : 12}>
             <Paper
               h={150}
               radius='lg'

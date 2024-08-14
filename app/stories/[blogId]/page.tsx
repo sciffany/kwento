@@ -53,6 +53,7 @@ export default function Story() {
                         method: "POST",
                         body: JSON.stringify({
                           text: card.content,
+                          language: "korean",
                         }),
                         cache: "force-cache",
                       });

@@ -1,5 +1,5 @@
 import { ActionIcon, Center, Flex, Paper, Text } from "@mantine/core";
-import { useListState } from "@mantine/hooks";
+import { useListState, useMediaQuery } from "@mantine/hooks";
 import { COLORS } from "../app/structure/korean";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { useState } from "react";
@@ -7,7 +7,9 @@ import { useState } from "react";
 export default function Sentence({
   parts,
   i,
+  language,
 }: {
+  language: string;
   parts: {
     text?: string;
     translation?: string;
@@ -18,6 +20,8 @@ export default function Sentence({
   }[];
   i: number;
 }) {
+  const matches = useMediaQuery("(min-width: 56.25em)");
+
   const [selected, setSelected] = useState<number[]>(
     Array(parts.length).fill(0)
   );
@@ -58,6 +62,7 @@ export default function Sentence({
                     method: "POST",
                     body: JSON.stringify({
                       text: part.choices?.[selected[j]].text,
+                      language,
                     }),
                     cache: "force-cache",
                   });
@@ -70,7 +75,7 @@ export default function Sentence({
                 }}
               >
                 <Flex direction='column' align='center'>
-                  <Text fz={70} fw='bold'>
+                  <Text fz={matches ? 70 : 30} fw='bold'>
                     {part.choices[selected[j]].text}
                   </Text>
                   {part.choices[selected[j]].translation}
@@ -109,6 +114,7 @@ export default function Sentence({
                 method: "POST",
                 body: JSON.stringify({
                   text: part.text,
+                  language,
                 }),
                 cache: "force-cache",
               });
@@ -121,7 +127,7 @@ export default function Sentence({
             <Flex direction={"row"}>
               <Center>
                 <Flex direction='column' align='center'>
-                  <Text fz={70} fw='bold'>
+                  <Text fz={matches ? 70 : 30} fw='bold'>
                     {part.text}
                   </Text>
                   {part.translation}
@@ -146,6 +152,7 @@ export default function Sentence({
                   part.choices ? part.choices[selected[j]].text : part.text
                 )
                 .join(" "),
+              language: language,
             }),
             cache: "force-cache",
           });

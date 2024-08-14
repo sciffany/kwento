@@ -16,7 +16,10 @@ export async function POST(req: Request) {
 
   const request = {
     input: { text: json.text },
-    voice: { languageCode: "ko", ssmlGender: "NEUTRAL" as any },
+    voice: {
+      languageCode: LANGUAGE_TO_CODE[json.language],
+      ssmlGender: "NEUTRAL" as any,
+    },
     audioConfig: { audioEncoding: "MP3" as any },
   };
 
@@ -30,3 +33,8 @@ export async function POST(req: Request) {
     },
   });
 }
+
+export const LANGUAGE_TO_CODE = {
+  korean: "ko",
+  filipino: "fil",
+};
