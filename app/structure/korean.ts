@@ -516,7 +516,11 @@ const UNIT4_LESSONS = [
             choices: [
               {
                 text: "노래",
-                translation: "Music 🎵",
+                translation: "Song 🎵",
+              },
+              {
+                text: "라디오",
+                translation: "Radio 📻",
               },
             ],
           },
@@ -527,6 +531,76 @@ const UNIT4_LESSONS = [
           {
             text: "듣아요",
             translation: "hear",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Liking 🥰",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "피자",
+                translation: "Pizza 🍕",
+              },
+              {
+                text: "강아지",
+                translation: "Puppy",
+              },
+              {
+                text: "고양이",
+                translation: "Cat",
+              },
+            ],
+          },
+          {
+            text: "릴",
+            translation: "object marker (for vowel-ending words)",
+          },
+          {
+            text: "좋아요",
+            translation: "like",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Disliking 😒",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "양고기",
+                translation: "Mutton",
+              },
+              {
+                text: "독서",
+                translation: "Reading",
+              },
+            ],
+          },
+          {
+            text: "릴",
+            translation: "object marker (for vowel-ending words)",
+          },
+          {
+            text: "싫어해요",
+            translation: "dislike",
           },
         ],
       },
@@ -763,6 +837,202 @@ const UNIT6_LESSONS = [
   },
 ];
 
+const UNIT7_LESSONS = [
+  {
+    title: "Good things 👍",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "좋다",
+            translation: "Is Being Good",
+          },
+        ],
+      },
+
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "For me,",
+          },
+          {
+            choices: [
+              {
+                text: "피자",
+                translation: "Pizza 🍕",
+              },
+              {
+                text: "독서",
+                translation: "Reading 📖",
+              },
+            ],
+          },
+          {
+            text: "가",
+            translation: "subject marker (for vowel-ending words)",
+          },
+          {
+            text: "좋아요",
+            translation: "is good",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "For me,",
+          },
+          {
+            choices: [
+              {
+                text: "음식",
+                translation: "Food 🍲",
+              },
+              {
+                text: "음악",
+                translation: "Music 🎵",
+              },
+            ],
+          },
+          {
+            text: "이",
+            translation: "subject marker (for consonant-ending words)",
+          },
+          {
+            text: "좋아요",
+            translation: "is good",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Spicy things 🌶️/ Tasty things 😋",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "맵다",
+            translation: "Is Being Spicy",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "맛있다",
+            translation: "Is Being Tasty",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: [
+              {
+                text: "김치",
+                translation: "Kimchi 🥬",
+              },
+              {
+                text: "라면",
+                translation: "Ramen 🍜",
+              },
+            ],
+          },
+          {
+            text: "는",
+            translation: "topic marker",
+          },
+          {
+            choices: [
+              {
+                text: "매워요",
+                translation: "is spicy",
+              },
+              {
+                text: "맛있어요",
+                translation: "is tasty",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Hungry people 🍽️/ Full people  😋",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "배고프다",
+            translation: "Is Being Hungry",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "배부르다",
+            translation: "Is Being Full",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: [
+              {
+                text: "이",
+                translation: "This",
+              },
+              {
+                text: "그",
+                translation: "That",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "학생",
+                translation: "This student",
+              },
+              {
+                text: "선생님",
+                translation: "This teacher",
+              },
+              {
+                text: "사람",
+                translation: "Person",
+              },
+            ],
+          },
+          {
+            text: "은",
+            translation: "topic marker (for consontant-ending words)",
+          },
+          {
+            choices: [
+              {
+                text: "배고파요",
+                translation: "is hungry",
+              },
+              {
+                text: "배불러요",
+                translation: "is full",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+const UNIT8_LESSONS = [];
+
 export const LESSONS = {
   korean: [
     {
@@ -800,6 +1070,12 @@ export const LESSONS = {
       lessons: UNIT6_LESSONS,
       blogId: "",
       emoji: "👨‍👩‍👧‍",
+    },
+    {
+      title: "Descriptive Verbs",
+      lessons: UNIT7_LESSONS,
+      blogId: "",
+      emoji: "🔥",
     },
   ],
   filipino: [
