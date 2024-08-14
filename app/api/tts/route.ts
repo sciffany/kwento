@@ -34,7 +34,7 @@ export async function POST(req: Request) {
   });
 }
 
-export const LANGUAGE_TO_CODE = {
+const LANGUAGE_TO_CODE = {
   korean: "ko",
   filipino: "fil",
 };
