@@ -5,8 +5,11 @@ import { useRouter } from "next/navigation";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { LESSONS } from "../../../../../structure/korean";
 import Sentence from "../../../../../../components/Sentence";
+import { useMediaQuery } from "@react-hook/media-query";
 
 export default function Lesson({ params: { lessonNum, language, unitNum } }) {
+  const largeScreen = useMediaQuery("(min-width: 56.25em)");
+
   lessonNum = parseInt(lessonNum);
   unitNum = parseInt(unitNum);
 
@@ -14,12 +17,12 @@ export default function Lesson({ params: { lessonNum, language, unitNum } }) {
 
   const languageLessons = LESSONS[language];
   return (
-    <Box p={50}>
+    <Box p={largeScreen ? 50 : 30}>
       <Text fz={50}>
         {languageLessons[unitNum - 1].lessons[lessonNum - 1].title}
       </Text>
 
-      <Flex direction={"column"} columnGap={50}>
+      <Flex direction={"column"} columnGap={largeScreen ? 50 : 10}>
         {languageLessons[unitNum - 1].lessons[lessonNum - 1].sentences.map(
           (sentence, i) => (
             <>

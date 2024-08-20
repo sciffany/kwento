@@ -427,7 +427,7 @@ const UNIT4_LESSONS = [
             ],
           },
           {
-            text: "릴",
+            text: "를",
             translation: "object marker (for vowel-ending words)",
           },
           {
@@ -492,7 +492,7 @@ const UNIT4_LESSONS = [
             ],
           },
           {
-            text: "릴",
+            text: "를",
             translation: "object marker (for vowel-ending words)",
           },
           {
@@ -525,7 +525,7 @@ const UNIT4_LESSONS = [
             ],
           },
           {
-            text: "릴",
+            text: "를",
             translation: "object marker (for vowel-ending words)",
           },
           {
@@ -562,7 +562,7 @@ const UNIT4_LESSONS = [
             ],
           },
           {
-            text: "릴",
+            text: "를",
             translation: "object marker (for vowel-ending words)",
           },
           {
@@ -595,7 +595,7 @@ const UNIT4_LESSONS = [
             ],
           },
           {
-            text: "릴",
+            text: "를",
             translation: "object marker (for vowel-ending words)",
           },
           {
