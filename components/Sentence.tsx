@@ -63,7 +63,10 @@ export default function Sentence({
               )}
               <Center
                 onClick={async () => {
-                  playSound(part.choices?.[selected[j]].text, language);
+                  playSound(
+                    part.choices ? part.choices[selected[j]].text : part.text,
+                    language
+                  );
                 }}
               >
                 <Flex direction='column' align='center'>
@@ -125,7 +128,14 @@ export default function Sentence({
           cursor: "pointer",
         }}
         onClick={async () => {
-          playSound(parts.map((part) => part.text).join(" "), language);
+          playSound(
+            parts
+              .map((part, j) =>
+                part.choices ? part.choices[selected[j]].text : part.text
+              )
+              .join(" "),
+            language
+          );
         }}
       >
         ▶️
