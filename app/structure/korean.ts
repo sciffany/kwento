@@ -1077,12 +1077,12 @@ export const LESSONS = {
       blogId: "",
       emoji: "🔥",
     },
-    {
-      title: "Adverbs",
-      lessons: UNIT8_LESSONS,
-      blogId: "",
-      emoji: "🏃‍♂️",
-    },
+    // {
+    //   title: "Adverbs",
+    //   lessons: UNIT8_LESSONS,
+    //   blogId: "",
+    //   emoji: "🏃‍♂️",
+    // },
   ],
   filipino: [
     {
