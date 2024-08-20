@@ -36,10 +36,10 @@ export default function CommonHeader() {
           </div>
           <SigninButton></SigninButton>
         </Group>
-        <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom='sm' />
+        {/* <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom='sm' /> */}
       </Flex>
 
-      <Drawer
+      {/* <Drawer
         opened={drawerOpened}
         onClose={closeDrawer}
         size='100%'
@@ -65,7 +65,7 @@ export default function CommonHeader() {
           My Stories
         </div>
         <SigninButton />
-      </Drawer>
+      </Drawer> */}
     </AppShell.Header>
   );
 }
