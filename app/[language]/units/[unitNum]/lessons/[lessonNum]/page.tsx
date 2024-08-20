@@ -52,7 +52,13 @@ export default function Lesson({ params: { lessonNum, language, unitNum } }) {
             (sentence, i) => (
               <>
                 <Sentence language={language} parts={sentence.parts} i={i} />
-                <Divider mt='lg' style={{ borderTopStyle: "dashed" }} />
+                <Divider
+                  mt='lg'
+                  style={{
+                    borderTopStyle: "dashed",
+                    borderTopWidth: "2px",
+                  }}
+                />
               </>
             )
           )}
