@@ -4,8 +4,8 @@ import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { NextAuthProvider } from "../components/Providers";
 
 export const metadata = {
-  title: "Kwento",
-  description: "Read and write stories in your language",
+  title: "Lingosaurus",
+  description: "Incremental and interactive way to learn a new language",
 };
 
 export default function RootLayout({ children }: { children: any }) {

@@ -138,7 +138,8 @@ async function playSound(text?: string, language?: string) {
   const res = await fetch(`/api/tts/`, {
     method: "POST",
     body: JSON.stringify({
-      text: language,
+      text,
+      language,
     }),
     cache: "force-cache",
   });

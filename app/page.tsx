@@ -29,7 +29,7 @@ export default function () {
               variant='gradient'
               gradient={{ from: "blue", to: "green" }}
             >
-              immersive
+              incremental
             </Text>{" "}
             and{" "}
             <Text
@@ -38,14 +38,25 @@ export default function () {
               variant='gradient'
               gradient={{ from: "blue", to: "green" }}
             >
-              fun
+              interactive
             </Text>{" "}
             way to learn a new language
           </Title>
           <Text className={classes.description} mt={30} fz={28}>
-            Learn a new language by reading and listening to stories. Over 60+
-            stories with more added every week.
+            Learning a new language can be a gargantuan task. We can break it
+            down for you!
           </Text>
+          <ul
+            style={{
+              fontSize: "1.2rem",
+              marginTop: "2rem",
+              marginBottom: "2rem",
+            }}
+          >
+            <li>Gradual introduction to new sentence structures</li>
+            <li>Exposure to a wide array of vocabulary words</li>
+            <li>Interactive and repetitive audio</li>
+          </ul>
           <Button
             variant='gradient'
             gradient={{ from: "blue", to: "green" }}

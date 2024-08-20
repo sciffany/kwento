@@ -12,14 +12,18 @@ export default function CommonHeader() {
   return (
     <AppShell.Header px={0} py={10}>
       <Flex justify='space-between'>
-        <Link href='/stories'>
-          <img
-            src='/logo.png'
-            width={300}
-            height={50}
-            alt='Logo'
-            style={{ cursor: "pointer" }}
-          />
+        <Link
+          style={{
+            cursor: "pointer",
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+            color: "black",
+            textDecoration: "none",
+            marginLeft: "1rem",
+          }}
+          href='/stories'
+        >
+          🦕 Lingosaurus
         </Link>
         <Group visibleFrom='sm'>
           <div
