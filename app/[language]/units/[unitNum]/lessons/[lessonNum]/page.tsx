@@ -80,9 +80,7 @@ export default function Lesson({ params: { lessonNum, language, unitNum } }) {
         <Button
           bg='gray'
           onClick={() => {
-            if (lessonNum > 1) {
-              router.push(`/${language}`);
-            }
+            router.push(`/${language}`);
           }}
         >
           Back to {language.toUpperCase()}
