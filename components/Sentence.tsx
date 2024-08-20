@@ -47,18 +47,20 @@ export default function Sentence({
             <Flex direction={"row"} align='center' columnGap={10}>
               {part.choices.length > 1 && (
                 <Flex columnGap={10}>
-                  <ActionIcon
-                    color={"black"}
-                    onClick={() => {
-                      const newSelected = [...selected];
-                      if (newSelected[j] > 0) {
-                        newSelected[j]--;
-                        setSelected(newSelected);
-                      }
-                    }}
-                  >
-                    <IconArrowLeft />
-                  </ActionIcon>
+                  {selected[j] > 0 && (
+                    <ActionIcon
+                      color={"black"}
+                      onClick={() => {
+                        const newSelected = [...selected];
+                        if (newSelected[j] > 0) {
+                          newSelected[j]--;
+                          setSelected(newSelected);
+                        }
+                      }}
+                    >
+                      <IconArrowLeft />
+                    </ActionIcon>
+                  )}
                 </Flex>
               )}
               <Center
@@ -76,23 +78,24 @@ export default function Sentence({
                   {part.choices[selected[j]].translation}
                 </Flex>
               </Center>
-              {part.choices.length > 1 && (
-                <ActionIcon
-                  color={"black"}
-                  onClick={() => {
-                    const newSelected = [...selected];
-                    if (
-                      part.choices?.length &&
-                      newSelected[j] < part.choices?.length - 1
-                    ) {
-                      newSelected[j]++;
-                      setSelected(newSelected);
-                    }
-                  }}
-                >
-                  <IconArrowRight />
-                </ActionIcon>
-              )}
+              {part.choices.length > 1 &&
+                selected[j] < part.choices?.length - 1 && (
+                  <ActionIcon
+                    color={"black"}
+                    onClick={() => {
+                      const newSelected = [...selected];
+                      if (
+                        part.choices?.length &&
+                        newSelected[j] < part.choices?.length - 1
+                      ) {
+                        newSelected[j]++;
+                        setSelected(newSelected);
+                      }
+                    }}
+                  >
+                    <IconArrowRight />
+                  </ActionIcon>
+                )}
             </Flex>
           </Paper>
         ) : (
