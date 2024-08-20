@@ -15,7 +15,7 @@ export default function Units({ params: { language } }) {
   return (
     <Flex direction={"column"}>
       <Center>
-        <Text fz={36} fw='bold'>
+        <Text mt={30} fz={36} fw='bold'>
           {language.toUpperCase()}
         </Text>
       </Center>

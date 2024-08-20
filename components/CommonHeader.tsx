@@ -21,7 +21,7 @@ export default function CommonHeader() {
             textDecoration: "none",
             marginLeft: "1rem",
           }}
-          href='/stories'
+          href='/home'
         >
           🦕 Lingosaurus
         </Link>

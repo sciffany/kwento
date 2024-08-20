@@ -78,12 +78,12 @@ export default function Lesson({ params: { lessonNum, language, unitNum } }) {
           </Flex>
         </Center>
         <Button
-          bg='gray'
+          bg='blue'
           onClick={() => {
             router.push(`/${language}`);
           }}
         >
-          Back to {language.toUpperCase()}
+          Back
         </Button>
       </Flex>
     </Box>

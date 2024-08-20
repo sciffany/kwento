@@ -65,7 +65,7 @@ export default function () {
             mt={40}
             fz='xl'
             onClick={() => {
-              router.push("/stories");
+              router.push("/home");
             }}
           >
             Learn Now
