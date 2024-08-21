@@ -30,16 +30,16 @@ export default function Sentence({
     <Flex
       direction={"row"}
       wrap='wrap'
-      columnGap={largeScreen ? 50 : 10}
+      columnGap={largeScreen ? 30 : 10}
       align='center'
     >
       {parts.map((part, j) =>
         part.choices ? (
           <Paper
             mt={20}
-            radius={largeScreen ? 50 : 10}
+            radius={largeScreen ? 30 : 10}
             bg={COLORS[(i + j) % COLORS.length]}
-            p={largeScreen ? 50 : 10}
+            p={largeScreen ? 30 : 10}
             style={{
               cursor: "pointer",
             }}
@@ -72,7 +72,7 @@ export default function Sentence({
                 }}
               >
                 <Flex direction='column' align='center'>
-                  <Text fz={largeScreen ? 70 : 20} fw='bold'>
+                  <Text fz={largeScreen ? 50 : 20} fw='bold'>
                     {part.choices[selected[j]].text}
                   </Text>
                   {part.choices[selected[j]].translation}
@@ -101,9 +101,9 @@ export default function Sentence({
         ) : (
           <Paper
             mt={20}
-            radius={largeScreen ? 50 : 10}
+            radius={largeScreen ? 30 : 10}
             bg={COLORS[(i + j) % COLORS.length]}
-            p={largeScreen ? 50 : 10}
+            p={largeScreen ? 30 : 10}
             style={{
               cursor: "pointer",
             }}
@@ -114,7 +114,7 @@ export default function Sentence({
             <Flex direction={"row"}>
               <Center>
                 <Flex direction='column' align='center'>
-                  <Text fz={largeScreen ? 70 : 20} fw='bold'>
+                  <Text fz={largeScreen ? 50 : 20} fw='bold'>
                     {part.text}
                   </Text>
                   {part.translation}
@@ -142,6 +142,35 @@ export default function Sentence({
         }}
       >
         ▶️
+      </Text>
+
+      <Text
+        fz={50}
+        style={{
+          cursor: "pointer",
+        }}
+        onClick={async () => {
+          const newSelected = selected.map((_, j) => {
+            const choices = parts[j].choices;
+            if (choices) {
+              return Math.floor(Math.random() * choices.length || 0);
+            } else {
+              return 0;
+            }
+          });
+          setSelected(newSelected);
+
+          playSound(
+            parts
+              .map((part, j) =>
+                part.choices ? part.choices[newSelected[j]].text : part.text
+              )
+              .join(" "),
+            language
+          );
+        }}
+      >
+        ⚄
       </Text>
     </Flex>
   );

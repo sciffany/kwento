@@ -398,6 +398,26 @@ const UNIT3_LESSONS = [
       },
     ],
   },
+  {
+    title: "Reading 📖",
+    sentences: [
+      {
+        parts: [{ text: "읽다", translation: "To read" }],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "읽어요",
+            translation: "read",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const UNIT4_LESSONS = [
@@ -756,6 +776,14 @@ const UNIT6_LESSONS = [
                 text: "노래 들어요",
                 translation: "listen to song",
               },
+              {
+                text: "공원에 가요",
+                translation: "go to the park",
+              },
+              {
+                text: "책 읽어요",
+                translation: "read a book",
+              },
             ],
           },
         ],
@@ -1031,7 +1059,425 @@ const UNIT7_LESSONS = [
     ],
   },
 ];
-const UNIT8_LESSONS = [];
+
+const UNIT8_PEOPLE = [
+  {
+    text: "저는",
+    translation: "As for me,",
+  },
+  {
+    text: "엄마는",
+    translation: "Mom",
+  },
+  {
+    text: "아빠는",
+    translation: "Dad",
+  },
+  {
+    text: "체친구는",
+    translation: "Friend",
+  },
+];
+const UNIT8_VERBS = [
+  {
+    text: "있어요",
+    translation: "Have",
+  },
+  {
+    text: "없어요",
+    translation: "Do not have",
+  },
+  {
+    text: "봐요",
+    translation: "See",
+  },
+];
+
+const UNIT8_LESSONS = [
+  {
+    title: "Red 🟥",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "빨간색",
+            translation: "Red",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: UNIT8_PEOPLE,
+          },
+          {
+            text: "빨간",
+            translation: "Red",
+          },
+          {
+            choices: [
+              {
+                text: "책을",
+                translation: "Book + Object Marker",
+              },
+              {
+                text: "자동차 를",
+                translation: "Car + Object Marker",
+              },
+              {
+                text: "사과를",
+                translation: "Apple + Object Marker",
+              },
+            ],
+          },
+          {
+            choices: UNIT8_VERBS,
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: [
+              {
+                text: "이",
+                translation: "This",
+              },
+              {
+                text: "그",
+                translation: "That",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "책 은",
+                translation: "Book + Topic Marker",
+              },
+              {
+                text: "자동차 는",
+                translation: "Car + Topic Marker",
+              },
+              {
+                text: "사과 는",
+                translation: "Apple + Topic Marker",
+              },
+            ],
+          },
+          {
+            text: "빨간색",
+            translation: "Red",
+          },
+          {
+            text: "이에요",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Blue 🟦",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "파란색",
+            translation: "Blue",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: UNIT8_PEOPLE,
+          },
+          {
+            text: "파란",
+            translation: "Blue",
+          },
+          {
+            choices: [
+              {
+                text: "핸드폰 을",
+                translation: "Phone + Topic Marker",
+              },
+              {
+                text: "새 를",
+                translation: "Bird + Topic Marker",
+              },
+              {
+                text: "책상을",
+                translation: "Desk + Topic Marker",
+              },
+              {
+                text: "자전거 를",
+                translation: "Bike + Topic Marker",
+              },
+            ],
+          },
+          {
+            choices: UNIT8_VERBS,
+            translation: "is",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: [
+              {
+                text: "이",
+                translation: "This",
+              },
+              {
+                text: "그",
+                translation: "That",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "핸드폰 은",
+                translation: "Phone + Topic Marker",
+              },
+              {
+                text: "새 는",
+                translation: "Bird + Topic Marker",
+              },
+              {
+                text: "책상 은",
+                translation: "Desk + Topic Marker",
+              },
+              {
+                text: "자전거 는",
+                translation: "Bike + Topic Marker",
+              },
+            ],
+          },
+          {
+            text: "파란색",
+            translation: "Blue",
+          },
+          {
+            text: "이에요",
+            translation: "is",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Yellow 🟨",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "노란색",
+            translation: "Yellow",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: UNIT8_PEOPLE,
+          },
+          {
+            text: "노란",
+            translation: "Yellow",
+          },
+          {
+            choices: [
+              {
+                text: "새 를",
+                translation: "Bird + Object Marker",
+              },
+              {
+                text: "바나나 를",
+                translation: "Banana + Object Marker",
+              },
+              {
+                text: "오리 를",
+                translation: "Duck + Object Marker",
+              },
+            ],
+          },
+          {
+            choices: UNIT8_VERBS,
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: [
+              {
+                text: "이",
+                translation: "This",
+              },
+              {
+                text: "그",
+                translation: "That",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "새 는",
+                translation: "Bird + Topic Marker",
+              },
+              {
+                text: "바나나 는",
+                translation: "Banana + Topic Marker",
+              },
+              {
+                text: "오리 는",
+                translation: "Duck + Topic Marker",
+              },
+            ],
+          },
+          {
+            text: "노란색",
+            translation: "Yellow",
+          },
+          {
+            text: "이에요",
+            translation: "is",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Green 🟩",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "초록색",
+            translation: "Green",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: UNIT8_PEOPLE,
+          },
+          {
+            text: "초록",
+            translation: "Green",
+          },
+          {
+            choices: [
+              {
+                text: "오리 를",
+                translation: "Duck + Object Marker",
+              },
+              {
+                text: "나무 를",
+                translation: "Tree + Object Marker",
+              },
+              {
+                text: "풀 을",
+                translation: "Grass + Object Marker",
+              },
+            ],
+          },
+          {
+            choices: UNIT8_VERBS,
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: [
+              {
+                text: "이",
+                translation: "This",
+              },
+              {
+                text: "그",
+                translation: "That",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "오리 는",
+                translation: "Duck + Topic Marker",
+              },
+              {
+                text: "나무 는",
+                translation: "Tree + Topic Marker",
+              },
+              {
+                text: "풀 은",
+                translation: "Grass + Topic Marker",
+              },
+            ],
+          },
+          {
+            text: "초록색",
+            translation: "Green",
+          },
+          {
+            text: "이에요",
+            translation: "is",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Black ⬛",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "검은색",
+            translation: "Black",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: UNIT8_PEOPLE,
+          },
+          {
+            text: "검은",
+            translation: "Black",
+          },
+          {
+            choices: [
+              {
+                text: " 머리카락 을",
+                translation: "Hair + Object Marker",
+              },
+              {
+                text: "신발 을",
+                translation: "Shoes + Object Marker",
+              },
+              {
+                text: "가방 을",
+                translation: "Bag + Object Marker",
+              },
+            ],
+          },
+          {
+            choices: UNIT8_VERBS,
+          },
+        ],
+      },
+    ],
+  },
+];
 
 export const LESSONS = {
   korean: [
@@ -1077,12 +1523,12 @@ export const LESSONS = {
       blogId: "",
       emoji: "🔥",
     },
-    // {
-    //   title: "Adverbs",
-    //   lessons: UNIT8_LESSONS,
-    //   blogId: "",
-    //   emoji: "🏃‍♂️",
-    // },
+    {
+      title: "Colors",
+      lessons: UNIT8_LESSONS,
+      blogId: "",
+      emoji: "🌈",
+    },
   ],
   filipino: [
     {

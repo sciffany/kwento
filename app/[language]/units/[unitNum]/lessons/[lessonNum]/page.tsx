@@ -43,7 +43,7 @@ export default function Lesson({ params: { lessonNum, language, unitNum } }) {
     >
       <CommonHeader />
 
-      <Box mt={70} p={largeScreen ? 50 : 30}>
+      <Box mt={50} p={largeScreen ? 50 : 30}>
         <Text fz={largeScreen ? 50 : 30}>
           {languageLessons[unitNum - 1].lessons[lessonNum - 1].title}
         </Text>
