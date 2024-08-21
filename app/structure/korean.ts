@@ -8,7 +8,19 @@ import {
   FIL_UNIT6_LESSONS,
 } from "./filipino";
 
-export const UNIT1_LESSONS = [
+type Textbox = { text?: string; translation?: string };
+
+export const UNIT1_LESSONS: {
+  title: string;
+  sentences: {
+    parts: (
+      | {
+          choices?: Textbox[];
+        }
+      | Textbox
+    )[];
+  }[];
+}[] = [
   {
     title: "Hello 👋",
     sentences: [
@@ -79,12 +91,16 @@ export const UNIT1_LESSONS = [
                 translation: "Jamie",
               },
               {
-                text: "고양이",
-                translation: "a cat",
+                text: "가수",
+                translation: "a singer",
               },
               {
-                text: "강아지",
-                translation: "a puppy",
+                text: "배우",
+                translation: "an actor",
+              },
+              {
+                text: "의사",
+                translation: "a doctor",
               },
             ],
           },
@@ -166,8 +182,16 @@ export const UNIT1_LESSONS = [
             translation: "person",
           },
           {
-            text: "이에요",
-            translation: "am/is/are/to be (for vowel-ending words)",
+            choices: [
+              {
+                text: "이에요",
+                translation: "am/is/are/to be (for vowel-ending words)",
+              },
+              {
+                text: "아니에요",
+                translation: "am/is/are/to be not",
+              },
+            ],
           },
         ],
       },
@@ -1170,7 +1194,16 @@ const UNIT8_LESSONS = [
             translation: "Red",
           },
           {
-            text: "이에요",
+            choices: [
+              {
+                text: "이에요",
+                translation: "is",
+              },
+              {
+                text: "아니에요",
+                translation: "is not",
+              },
+            ],
           },
         ],
       },
@@ -1218,7 +1251,6 @@ const UNIT8_LESSONS = [
           },
           {
             choices: UNIT8_VERBS,
-            translation: "is",
           },
         ],
       },
@@ -1261,8 +1293,16 @@ const UNIT8_LESSONS = [
             translation: "Blue",
           },
           {
-            text: "이에요",
-            translation: "is",
+            choices: [
+              {
+                text: "이에요",
+                translation: "is",
+              },
+              {
+                text: "아니에요",
+                translation: "is not",
+              },
+            ],
           },
         ],
       },
@@ -1344,8 +1384,16 @@ const UNIT8_LESSONS = [
             translation: "Yellow",
           },
           {
-            text: "이에요",
-            translation: "is",
+            choices: [
+              {
+                text: "이에요",
+                translation: "is",
+              },
+              {
+                text: "아니에요",
+                translation: "is not",
+              },
+            ],
           },
         ],
       },
@@ -1427,8 +1475,16 @@ const UNIT8_LESSONS = [
             translation: "Green",
           },
           {
-            text: "이에요",
-            translation: "is",
+            choices: [
+              {
+                text: "이에요",
+                translation: "is",
+              },
+              {
+                text: "아니에요",
+                translation: "is not",
+              },
+            ],
           },
         ],
       },
@@ -1472,6 +1528,145 @@ const UNIT8_LESSONS = [
           },
           {
             choices: UNIT8_VERBS,
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: [
+              {
+                text: "이",
+                translation: "This",
+              },
+              {
+                text: "그",
+                translation: "That",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: " 머리카락 은",
+                translation: "Hair + Topic Marker",
+              },
+              {
+                text: "신발 은",
+                translation: "Shoes + Topic Marker",
+              },
+              {
+                text: "가방 은",
+                translation: "Bag + Topic Marker",
+              },
+            ],
+          },
+          {
+            text: "검은색",
+            translation: "Black",
+          },
+          {
+            choices: [
+              {
+                text: "이에요",
+                translation: "is",
+              },
+              {
+                text: "아니에요",
+                translation: "is not",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "White ⬜",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "하얀색",
+            translation: "White",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: UNIT8_PEOPLE,
+          },
+          {
+            text: "하얀",
+            translation: "White",
+          },
+          {
+            choices: [
+              {
+                text: "머리카락 을",
+                translation: "Hair + Object Marker",
+              },
+              {
+                text: "셔츠 를",
+                translation: "Shirt + Object Marker",
+              },
+              {
+                text: "암소 를",
+                translation: "Cow + Object Marker",
+              },
+            ],
+          },
+          {
+            choices: UNIT8_VERBS,
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            choices: [
+              {
+                text: "이",
+                translation: "This",
+              },
+              {
+                text: "그",
+                translation: "That",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: " 머리카락 은",
+                translation: "Hair + Topic Marker",
+              },
+              {
+                text: "셔츠 는",
+                translation: "Shirt + Topic Marker",
+              },
+              {
+                text: "암소 는",
+                translation: "Cow + Topic Marker",
+              },
+            ],
+          },
+          {
+            text: "하얀색",
+            translation: "White",
+          },
+          {
+            choices: [
+              {
+                text: "이에요",
+                translation: "is",
+              },
+              {
+                text: "아니에요",
+                translation: "is not",
+              },
+            ],
           },
         ],
       },
