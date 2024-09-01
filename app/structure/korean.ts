@@ -7,6 +7,7 @@ import {
   FIL_UNIT5_LESSONS,
   FIL_UNIT6_LESSONS,
 } from "./filipino";
+import { text } from "stream/consumers";
 
 type Textbox = { text?: string; translation?: string };
 
@@ -2193,7 +2194,261 @@ const UNIT9_LESSONS = [
   },
 ];
 
-const UNIT10_LESSONS = [];
+const UNIT10_LESSONS = [
+  {
+    title: "Want to 🙏",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "-고 싶어요",
+            translation: "Want to",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "정말",
+                translation: "Really",
+              },
+              {
+                text: "조금",
+                translation: "A bit",
+              },
+              {
+                text: "",
+                translation: "(No adverb)",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "먹고",
+                translation: "Eat",
+              },
+              {
+                text: "자고",
+                translation: "Sleep",
+              },
+              {
+                text: "놀고",
+                translation: "Play",
+              },
+              {
+                text: "운동하고",
+                translation: "Exercise",
+              },
+              {
+                text: "책 읽고",
+                translation: "Read a book",
+              },
+            ],
+          },
+
+          {
+            text: "싶어요",
+            translation: "Want to",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Want to eat 🍽️",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "먹고 싶어요",
+            translation: "Want to eat",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "소고기 를",
+                translation: "Beef + Object Marker",
+              },
+              {
+                text: "사과 를",
+                translation: "Apple + Object Marker",
+              },
+              {
+                text: "복숭아 를",
+                translation: "Peach + Object Marker",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "정말",
+                translation: "Really",
+              },
+              {
+                text: "조금",
+                translation: "A bit",
+              },
+              {
+                text: "",
+                translation: "(No adverb)",
+              },
+            ],
+          },
+          {
+            text: "먹고",
+            translation: "Eat",
+          },
+          {
+            text: "싶어요",
+            translation: "Want to",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Want to go 🚗",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "가고 싶어요",
+            translation: "Want to go",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "학교 에",
+                translation: "School + Location Marker",
+              },
+              {
+                text: "집 에",
+                translation: "Home + Location Marker",
+              },
+              {
+                text: "공원 에",
+                translation: "Park + Location Marker",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "정말",
+                translation: "Really",
+              },
+              {
+                text: "조금",
+                translation: "A bit",
+              },
+              {
+                text: "",
+                translation: "(No adverb)",
+              },
+            ],
+          },
+          {
+            text: "가고",
+            translation: "Go",
+          },
+          {
+            text: "싶어요",
+            translation: "Want to",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Want a __ 🎁",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "가지 싶어요",
+            translation: "Want (or more literally, want to have)",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "차 를",
+                translation: "Car + Object Marker",
+              },
+              {
+                text: "집 을",
+                translation: "House + Object Marker",
+              },
+              {
+                text: "돈 을",
+                translation: "Money + Object Marker",
+              },
+              {
+                text: "바나나 를 ",
+                translation: "Banana + Object Marker",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "정말",
+                translation: "Really",
+              },
+              {
+                text: "조금",
+                translation: "A bit",
+              },
+              {
+                text: "",
+                translation: "(No adverb)",
+              },
+            ],
+          },
+          {
+            text: "가지고",
+            translation: "Have",
+          },
+          {
+            text: "싶어요",
+            translation: "Want to",
+          },
+        ],
+      },
+    ],
+  },
+];
 const UNIT11_LESSONS = [];
 const UNIT12_LESSONS = [];
 const UNIT13_LESSONS = [];
@@ -2255,7 +2510,7 @@ export const LESSONS = {
       emoji: "💨",
     },
     {
-      title: "Want",
+      title: "Want to",
       lessons: UNIT10_LESSONS,
       blogId: "",
       emoji: "🙏",
