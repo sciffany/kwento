@@ -1,7 +1,12 @@
 import { ActionIcon, Center, Flex, Paper, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { COLORS } from "../app/structure/korean";
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconArrowsShuffle,
+  IconPlayerPlayFilled,
+} from "@tabler/icons-react";
 import { useState } from "react";
 
 export default function Sentence({
@@ -141,7 +146,7 @@ export default function Sentence({
           );
         }}
       >
-        ▶️
+        <IconPlayerPlayFilled />
       </Text>
 
       <Text
@@ -170,7 +175,7 @@ export default function Sentence({
           );
         }}
       >
-        ⚄
+        <IconArrowsShuffle />
       </Text>
     </Flex>
   );
