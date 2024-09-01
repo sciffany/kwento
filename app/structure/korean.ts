@@ -1674,6 +1674,530 @@ const UNIT8_LESSONS = [
   },
 ];
 
+const UNIT9_LESSONS = [
+  {
+    title: "Quickly 💨",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "빨리",
+            translation: "Quickly",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "빨리",
+            translation: "quickly",
+          },
+          {
+            choices: [
+              {
+                text: "달려요",
+                translation: "Run",
+              },
+              {
+                text: "걸어요",
+                translation: "Walk",
+              },
+              {
+                text: "점프해요",
+                translation: "Jump",
+              },
+              {
+                text: "먹어요",
+                translation: "Eat",
+              },
+              {
+                text: "말해요",
+                translation: "Speak",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "A little bit 🤏",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "조금",
+            translation: "A little bit",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "한국어 를",
+                translation: "Korean language + object marker",
+              },
+              {
+                text: "영어 를",
+                translation: "English language + object marker",
+              },
+              {
+                text: "중국어 를",
+                translation: "Chinese + object marker",
+              },
+              {
+                text: "운동 을",
+                translation: "Exercise + object marker",
+              },
+            ],
+          },
+          {
+            text: "조금",
+            translation: "A little bit",
+          },
+          {
+            text: "해요",
+            translation: "Do",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Well 🌟",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "잘",
+            translation: "Well",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "한국어 를",
+                translation: "Korean language + object marker",
+              },
+              {
+                text: "영어 를",
+                translation: "English language + object marker",
+              },
+              {
+                text: "중국어 를",
+                translation: "Chinese + object marker",
+              },
+              {
+                text: "운동 을",
+                translation: "Exercise + object marker",
+              },
+            ],
+          },
+          {
+            text: "잘",
+            translation: "Well",
+          },
+          {
+            text: "해요",
+            translation: "Do",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            text: "잘",
+            translation: "Well",
+          },
+          {
+            choices: [
+              {
+                text: "자요",
+                translation: "Sleep",
+              },
+              {
+                text: "춤춰요",
+                translation: "Dance",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Really 💯",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "정말",
+            translation: "Really",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "진짜",
+            translation: "Really (informal)",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "한국어 를",
+                translation: "Korean language + object marker",
+              },
+              {
+                text: "영어 를",
+                translation: "English language + object marker",
+              },
+              {
+                text: "중국어 를",
+                translation: "Chinese + object marker",
+              },
+              {
+                text: "운동 을",
+                translation: "Exercise + object marker",
+              },
+            ],
+          },
+          {
+            choices: [
+              { text: "정말", translation: "Really" },
+              {
+                text: "진짜",
+                translation: "Really (informal)",
+              },
+            ],
+          },
+          {
+            text: "잘",
+            translation: "Well",
+          },
+          {
+            text: "해요",
+            translation: "Do",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              { text: "정말", translation: "Really" },
+              {
+                text: "진짜",
+                translation: "Really (informal)",
+              },
+            ],
+          },
+          {
+            text: "잘",
+            translation: "Well",
+          },
+          {
+            choices: [
+              {
+                text: "자요",
+                translation: "Sleep",
+              },
+              {
+                text: "춤춰요",
+                translation: "Dance",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              { text: "정말", translation: "Really" },
+              {
+                text: "진짜",
+                translation: "Really (informal)",
+              },
+            ],
+          },
+          {
+            text: "빨리",
+            translation: "quickly",
+          },
+          {
+            choices: [
+              {
+                text: "달려요",
+                translation: "Run",
+              },
+              {
+                text: "걸어요",
+                translation: "Walk",
+              },
+              {
+                text: "점프해요",
+                translation: "Jump",
+              },
+              {
+                text: "먹어요",
+                translation: "Eat",
+              },
+              {
+                text: "말해요",
+                translation: "Speak",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Very 🌟",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "아주",
+            translation: "Very",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "매우",
+            translation: "Very (slightly formal)",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "한국어 를",
+                translation: "Korean language + object marker",
+              },
+              {
+                text: "영어 를",
+                translation: "English language + object marker",
+              },
+              {
+                text: "중국어 를",
+                translation: "Chinese + object marker",
+              },
+              {
+                text: "운동 을",
+                translation: "Exercise + object marker",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "아주",
+                translation: "Very",
+              },
+              {
+                text: "매우",
+                translation: "Very (slightly formal)",
+              },
+            ],
+          },
+          {
+            text: "잘",
+            translation: "Well",
+          },
+          {
+            text: "해요",
+            translation: "Do",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "아주",
+                translation: "Very",
+              },
+              {
+                text: "매우",
+                translation: "Very (slightly formal)",
+              },
+            ],
+          },
+          {
+            text: "잘",
+            translation: "Well",
+          },
+          {
+            choices: [
+              {
+                text: "자요",
+                translation: "Sleep",
+              },
+              {
+                text: "춤춰요",
+                translation: "Dance",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "아주",
+                translation: "Very",
+              },
+              {
+                text: "매우",
+                translation: "Very (slightly formal)",
+              },
+            ],
+          },
+          {
+            text: "빨리",
+            translation: "quickly",
+          },
+          {
+            choices: [
+              {
+                text: "달려요",
+                translation: "Run",
+              },
+              {
+                text: "걸어요",
+                translation: "Walk",
+              },
+              {
+                text: "점프해요",
+                translation: "Jump",
+              },
+              {
+                text: "먹어요",
+                translation: "Eat",
+              },
+              {
+                text: "말해요",
+                translation: "Speak",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: [
+              {
+                text: "한국어 를",
+                translation: "Korean language + object marker",
+              },
+              {
+                text: "영어 를",
+                translation: "English language + object marker",
+              },
+              {
+                text: "중국어 를",
+                translation: "Chinese + object marker",
+              },
+              {
+                text: "운동 을",
+                translation: "Exercise + object marker",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "아주",
+                translation: "Very",
+              },
+              {
+                text: "매우",
+                translation: "Very (slightly formal)",
+              },
+            ],
+          },
+          {
+            text: "조금",
+            translation: "A little bit",
+          },
+          {
+            text: "해요",
+            translation: "Do",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const UNIT10_LESSONS = [];
+const UNIT11_LESSONS = [];
+const UNIT12_LESSONS = [];
+const UNIT13_LESSONS = [];
+
 export const LESSONS = {
   korean: [
     {
@@ -1723,6 +2247,36 @@ export const LESSONS = {
       lessons: UNIT8_LESSONS,
       blogId: "",
       emoji: "🌈",
+    },
+    {
+      title: "Adverbs",
+      lessons: UNIT9_LESSONS,
+      blogId: "",
+      emoji: "💨",
+    },
+    {
+      title: "Want",
+      lessons: UNIT10_LESSONS,
+      blogId: "",
+      emoji: "🙏",
+    },
+    {
+      title: "Question Words",
+      lessons: UNIT11_LESSONS,
+      blogId: "",
+      emoji: "🤔",
+    },
+    {
+      title: "Can",
+      lessons: UNIT12_LESSONS,
+      blogId: "",
+      emoji: "🉑",
+    },
+    {
+      title: "Numbers",
+      lessons: UNIT13_LESSONS,
+      blogId: "",
+      emoji: "🔢",
     },
   ],
   filipino: [
