@@ -2449,9 +2449,349 @@ const UNIT10_LESSONS = [
     ],
   },
 ];
-const UNIT11_LESSONS = [];
-const UNIT12_LESSONS = [];
-const UNIT13_LESSONS = [];
+
+const UNIT11_NUMBERS = [
+  {
+    text: "하나",
+    translation: "One",
+  },
+  {
+    text: "둘",
+    translation: "Two",
+  },
+  {
+    text: "셋",
+    translation: "Three",
+  },
+  {
+    text: "넷",
+    translation: "Four",
+  },
+  {
+    text: "다섯",
+    translation: "Five",
+  },
+  {
+    text: "여섯",
+    translation: "Six",
+  },
+  {
+    text: "일곱",
+    translation: "Seven",
+  },
+  {
+    text: "여덟",
+    translation: "Eight",
+  },
+  {
+    text: "아홉",
+    translation: "Nine",
+  },
+  {
+    text: "열",
+    translation: "Ten",
+  },
+  {
+    text: "열하나",
+    translation: "Eleven",
+  },
+  {
+    text: "열둘",
+    translation: "Twelve",
+  },
+];
+
+const UNIT11_LESSONS = [
+  {
+    title: "Number of siblings 👨‍👩‍👧‍👦",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: UNIT11_NUMBERS,
+          },
+          {
+            choices: [
+              {
+                text: "언니 가",
+                translation: "Older sister (for females) + subject marker",
+              },
+              {
+                text: "오빠 가",
+                translation: "Older brother (for females + subject marker",
+              },
+              {
+                text: "누나 가",
+                translation: "Older sister (for males) + subject marker",
+              },
+              {
+                text: "형 이",
+                translation: "Older brother (for males) + subject marker",
+              },
+              {
+                text: "여동생 이",
+                translation: "Younger sister + subject marker",
+              },
+              {
+                text: "남동생 이",
+                translation: "Younger brother + subject marker",
+              },
+            ],
+          },
+          {
+            text: "있어요",
+            translation: "Have",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Age 🎂",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: UNIT11_NUMBERS,
+          },
+          {
+            text: "살",
+            translation: "Years old",
+          },
+          {
+            text: "이에요",
+            translation: "is",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Time ⏰",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "지금 은",
+            translation: "Now + topic marker",
+          },
+          {
+            choices: UNIT11_NUMBERS,
+          },
+          {
+            text: "시",
+            translation: "O'clock (or literally, hour)",
+          },
+          {
+            text: "이에요",
+            translation: "is",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const UNIT12_ADVERBS = [
+  {
+    text: "잘",
+    translation: "Well",
+  },
+  {
+    text: "빨리",
+    translation: "Quickly",
+  },
+  {
+    text: "조금",
+    translation: "A little bit",
+  },
+  {
+    text: "",
+    translation: "(No adverb)",
+  },
+];
+
+const UNIT12_LESSONS = [
+  {
+    title: "Random abilities 🎨",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "-을 수 있어요",
+            translation: "Can (Or literally, have the ability to)",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "-을 수 없어요",
+            translation: "Cannot (Or literally, have no ability to)",
+          },
+        ],
+      },
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: UNIT12_ADVERBS,
+          },
+          {
+            choices: [
+              {
+                text: "먹을",
+                translation: "Eat + Conjugation for can",
+              },
+              {
+                text: "잘",
+                translation: "Sleep + Conjugation for can",
+              },
+              {
+                text: "춤출",
+                translation: "Dance + Conjugation for can",
+              },
+              {
+                text: "놀",
+                translation: "Play + Conjugation for can",
+              },
+              {
+                text: "노래를",
+                translation: "Sing + Conjugation for can",
+              },
+              {
+                text: "그림을",
+                translation: "Paint + Conjugation for can",
+              },
+            ],
+          },
+          {
+            text: "수",
+            translation: "Ability",
+          },
+          {
+            choices: [
+              {
+                text: "있어요",
+                translation: "Have",
+              },
+              {
+                text: "없어요",
+                translation: "Don't have",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Language abilities 💬",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "저는",
+            translation: "As for me,",
+          },
+          {
+            choices: UNIT12_ADVERBS,
+          },
+          {
+            choices: [
+              {
+                text: "한국어 를",
+                translation: "Korean language + object marker",
+              },
+              {
+                text: "영어 를",
+                translation: "English language + object marker",
+              },
+              {
+                text: "중국어 를",
+                translation: "Chinese + object marker",
+              },
+              {
+                text: "일본어 를",
+                translation: "Japanese + object marker",
+              },
+              {
+                text: "독일어 를",
+                translation: "German + object marker",
+              },
+            ],
+          },
+          {
+            choices: [
+              {
+                text: "할",
+                translation: "Do + Conjugation for can",
+              },
+              {
+                text: "말할",
+                translation: "Speak + Conjugation for can",
+              },
+              {
+                text: "쓸",
+                translation: "Write + Conjugation for can",
+              },
+              {
+                text: "읽을",
+                translation: "Read + Conjugation for can",
+              },
+              {
+                text: "들을",
+                translation: "Listen + Conjugation for can",
+              },
+            ],
+          },
+          {
+            text: "수",
+            translation: "Ability",
+          },
+          {
+            choices: [
+              {
+                text: "있어요",
+                translation: "Have",
+              },
+              {
+                text: "없어요",
+                translation: "Don't have",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+const UNIT13_LESSONS = [
+  {
+    title: "Question Words 🤔",
+    sentences: [
+      {
+        parts: [
+          {
+            text: "누구",
+            translation: "Who",
+          },
+        ],
+      },
+    ],
+  },
+];
 
 export const LESSONS = {
   korean: [
@@ -2516,10 +2856,10 @@ export const LESSONS = {
       emoji: "🙏",
     },
     {
-      title: "Question Words",
+      title: "Numbers",
       lessons: UNIT11_LESSONS,
       blogId: "",
-      emoji: "🤔",
+      emoji: "🔢",
     },
     {
       title: "Can",
@@ -2528,10 +2868,10 @@ export const LESSONS = {
       emoji: "🉑",
     },
     {
-      title: "Numbers",
+      title: "Question Words",
       lessons: UNIT13_LESSONS,
       blogId: "",
-      emoji: "🔢",
+      emoji: "🤔",
     },
   ],
   filipino: [
