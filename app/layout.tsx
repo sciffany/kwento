@@ -2,6 +2,7 @@ import "@mantine/core/styles.css";
 import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { NextAuthProvider } from "../components/Providers";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "Lingosaurus",
@@ -12,6 +13,7 @@ export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang='en'>
       <head>
+        <Analytics></Analytics>
         <ColorSchemeScript />
         <link rel='shortcut icon' href='/favicon.svg' />
         <meta
