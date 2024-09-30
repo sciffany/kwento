@@ -7,7 +7,7 @@ import {
   IconArrowsShuffle,
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export default function Sentence({
   parts,
@@ -26,10 +26,30 @@ export default function Sentence({
   i: number;
 }) {
   const largeScreen = useMediaQuery("(min-width: 56.25em)");
-
   const [selected, setSelected] = useState<number[]>(
     Array(parts.length).fill(0)
   );
+  const hasChoices = useMemo<boolean>(() => parts.some(part => part.choices), [parts]);
+
+  const playSentence = () => {
+    const randomisedChoices = selected.map((_, j) => {
+      const choices = parts[j].choices;
+      if (!choices) {
+        return 0;
+      }
+
+      return Math.floor(Math.random() * choices.length || 0);
+    });
+    setSelected(randomisedChoices);
+    playSound(
+      parts
+        .map((part, j) =>
+          part.choices ? part.choices[randomisedChoices[j]].text : part.text
+        )
+        .join(" "),
+      language
+    );
+  };
 
   return (
     <Flex
@@ -149,34 +169,16 @@ export default function Sentence({
         <IconPlayerPlayFilled />
       </Text>
 
+      {hasChoices &&
       <Text
         fz={50}
         style={{
           cursor: "pointer",
         }}
-        onClick={async () => {
-          const newSelected = selected.map((_, j) => {
-            const choices = parts[j].choices;
-            if (choices) {
-              return Math.floor(Math.random() * choices.length || 0);
-            } else {
-              return 0;
-            }
-          });
-          setSelected(newSelected);
-
-          playSound(
-            parts
-              .map((part, j) =>
-                part.choices ? part.choices[newSelected[j]].text : part.text
-              )
-              .join(" "),
-            language
-          );
-        }}
+          onClick={playSentence}
       >
         <IconArrowsShuffle />
-      </Text>
+        </Text>}
     </Flex>
   );
 }
