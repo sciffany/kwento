@@ -170,14 +170,14 @@ export default function Sentence({
       </Text>
 
       {hasChoices &&
-      <Text
-        fz={50}
-        style={{
-          cursor: "pointer",
-        }}
+        <Text
+          fz={50}
+          style={{
+            cursor: "pointer",
+          }}
           onClick={playSentence}
-      >
-        <IconArrowsShuffle />
+        >
+          <IconArrowsShuffle />
         </Text>}
     </Flex>
   );
